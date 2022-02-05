@@ -5,10 +5,7 @@ import javax.swing.*;
 public class Hello2DApp {
     public static void main (String[] args) {
         Hello2DFrame frame = new Hello2DFrame();
-
-        frame.setVisible(true);
     }
-
 }
 
 class Hello2DFrame extends JFrame {

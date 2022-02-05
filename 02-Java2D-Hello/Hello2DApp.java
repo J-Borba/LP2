@@ -1,12 +1,5 @@
-import java.awt.BasicStroke;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import java.awt.*;
+import javax.swing.*;
 
 /*
  * @author J-Borba
@@ -23,26 +16,32 @@ public class Hello2DApp {
 }
 
 class MyPanel extends JPanel{
+    
+    Image image;
+    
     public MyPanel () {
         this.setPreferredSize(new Dimension(600, 600));
-        this.setBackground(Color.black);
+        image = new ImageIcon("02-Java2D-Hello\\cut2.png").getImage(); 
         
     }
-
+    
     public void paint (Graphics g) {
         super.paint(g);
-
+        
         Graphics2D g2d = (Graphics2D) g;
         
         int WIDTH = this.getWidth();
         int HEIGHT = this.getHeight();
         
-    //Drawing "LP2"
+        //Trying to put an image
+            g2d.drawImage(image, 0, 0, null);
+
+        //Drawing "LP2"
         g2d.setPaint(Color.white);
         g2d.setFont(new Font("Consolas", Font.BOLD, 150));
         g2d.drawString("LP2", 170, 100);
         
-    //Drawing X through Panel
+        //Drawing X through Panel
         g2d.setStroke(new BasicStroke(5));
         g2d.setPaint(Color.red);
         g2d.drawLine(0, 0, WIDTH, HEIGHT);
@@ -67,7 +66,7 @@ class MyPanel extends JPanel{
     //Crossing Line
         g2d.setPaint(Color.red);
         g2d.drawLine(45, 370, 180, 235);
-
+    
     }
 }
 

@@ -1,11 +1,7 @@
 import java.awt.*;
 import javax.swing.*;
 
-/*
- * @author J-Borba
- */
-
-public class Hello2DApp {
+public class Hello2DAppModified {
     public static void main (String[] args) {
         MyFrame frame = new MyFrame();
         frame.setVisible(true);

@@ -30,7 +30,7 @@ class MyPanel extends JPanel{
         int HEIGHT = this.getHeight();
         
         //Trying to put an image
-            g2d.drawImage(image, 0, 0, null);
+        g2d.drawImage(image, 0, 0, null);
 
         //Drawing "LP2"
         g2d.setPaint(Color.white);

@@ -29,7 +29,7 @@ class MyPanel extends JPanel{
         int WIDTH = this.getWidth();
         int HEIGHT = this.getHeight();
         
-        //Trying to put an image
+        //Putting an image
         g2d.drawImage(image, 0, 0, null);
 
         //Drawing "LP2"
@@ -41,7 +41,7 @@ class MyPanel extends JPanel{
         g2d.setStroke(new BasicStroke(5));
         g2d.setPaint(Color.red);
         g2d.drawLine(0, 0, WIDTH, HEIGHT);
-        g2d.drawLine(0, WIDTH, HEIGHT, 0);
+        g2d.drawLine(0, HEIGHT, WIDTH, 0);
 
     //-=-=-=-=-=-=-=-=Drawing prohibited plate-=-=-=-=-=-=-=-=
 
@@ -76,9 +76,10 @@ class MyFrame extends JFrame {
 
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setTitle("MyFirstLp2Frame");
-        this.add(panel);
-        this.pack();
+        this.setSize(600, 600);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
+        this.add(panel);
+        this.pack();
     }
 }

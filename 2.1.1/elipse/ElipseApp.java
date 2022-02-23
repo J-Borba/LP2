@@ -1,3 +1,5 @@
+package elipse;
+
 public class ElipseApp {
     public static void main(String[] args){
         Elipse e1 = new Elipse(15, 15, 5);

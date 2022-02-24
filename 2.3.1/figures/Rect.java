@@ -1,4 +1,4 @@
-package figures;
+package Frame_Panel;
 
 import java.awt.*;
 

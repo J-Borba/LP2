@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-import figures.*;
+import Frame_Panel.*;
 
 class PackApp {
     public static void main (String[] args) {

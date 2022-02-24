@@ -5,7 +5,7 @@ import java.awt.*;
 import classes.*;
 
 //Criando o panel
-class MyPanel extends JPanel {
+public class MyPanel extends JPanel {
 
     //Inicializando os retangulos dentro do panel
     Rect r1, r2, r3;

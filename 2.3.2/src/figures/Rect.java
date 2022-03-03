@@ -1,4 +1,4 @@
-package classes;
+package figures;
 
 import java.awt.*;
 

@@ -1,4 +1,4 @@
-package Frame_Panel;
+package figures;
 
 import java.awt.*;
 import java.awt.geom.Ellipse2D;

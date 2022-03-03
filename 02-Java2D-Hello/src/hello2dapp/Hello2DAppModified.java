@@ -30,8 +30,8 @@ class MyPanel extends JPanel implements ActionListener{
     public MyPanel() {
 
         this.setPreferredSize(new Dimension(1366, 768));
-        background = new ImageIcon("background.jpg").getImage();
-        animation = new ImageIcon("Animation.png").getImage();
+        background = new ImageIcon("D:/.UERJ/Coding/LP2/02-Java2D-Hello/src/background.jpg").getImage();
+        animation = new ImageIcon("D:/.UERJ/Coding/LP2/02-Java2D-Hello/src/Animation.png").getImage();
         timer = new Timer(10, this);
         timer.start();
 

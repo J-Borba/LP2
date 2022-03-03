@@ -1,8 +1,8 @@
-package packrectellipse;
+package mainfile;
 
 import javax.swing.*;
 import java.awt.*;
-import classes.*;
+import figures.*;
 
 //Criando o panel
 public class MyPanel extends JPanel {

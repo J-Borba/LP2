@@ -1,4 +1,4 @@
-package packrectellipse;
+package mainfile;
 
 import javax.swing.*;
 

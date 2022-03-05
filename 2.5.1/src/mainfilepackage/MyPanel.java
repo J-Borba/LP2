@@ -43,7 +43,11 @@ public class MyPanel extends JPanel {
                                     new Color(rContorno, gContorno, bContorno),
 
                                     //Cor de fundo
-                                    new Color(rFundo, gFundo, bFundo)));
+                                    new Color(rFundo, gFundo, bFundo)
+
+                                )
+
+                            );
                             repaint();
                         }
 
@@ -69,7 +73,10 @@ public class MyPanel extends JPanel {
                                     new Color(rContorno, gContorno, bContorno),
 
                                     //Cor de fundo
-                                    new Color(rFundo, gFundo, bFundo)));
+                                    new Color(rFundo, gFundo, bFundo)
+
+                                    )
+                            );
 
                             repaint();
                         }

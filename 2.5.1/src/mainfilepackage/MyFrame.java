@@ -1,4 +1,4 @@
-package Frame_Panel;
+package mainfilepackage;
 
 import javax.swing.*;
 
@@ -18,7 +18,6 @@ public class MyFrame extends JFrame {
         this.add(panel); //Adicionando o panel no frame
         this.pack(); //Fazendo o frame ter o mesmo tamanho que o panel
         this.setLocationRelativeTo(null); //Fazendo o frame inicializar no meio da tela
-        this.setVisible(true); //Fazendo o frame ficar visivel
 
     }
 }

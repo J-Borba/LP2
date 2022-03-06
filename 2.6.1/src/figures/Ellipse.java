@@ -5,9 +5,7 @@ import java.awt.geom.Ellipse2D;
 
 public class Ellipse extends Figura{
 
-    int x, y, w, h;
-
-    Color contorno, fundo;
+    int w, h;
 
     public Ellipse(int x, int y, int w, int h, Color contorno, Color fundo){
         this.x = x;

@@ -4,9 +4,7 @@ import java.awt.*;
 
 public class Rect extends Figura{
 
-    int x, y, w, h;
-
-    Color contorno, fundo;
+    int w, h;
 
     public Rect(int x, int y, int w, int h, Color contorno, Color fundo){
         this.x = x;

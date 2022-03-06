@@ -20,11 +20,11 @@ public class MyPanel extends JPanel {
                 new KeyAdapter() {
                     public void keyPressed(KeyEvent e) {
 
-                        int x = randomizer.nextInt(500);
-                        int y = randomizer.nextInt(500);
+                        int x = randomizer.nextInt(350);
+                        int y = randomizer.nextInt(350);
                         
-                        int w = randomizer.nextInt(150);
-                        int h = randomizer.nextInt(150);
+                        int w = randomizer.nextInt(250);
+                        int h = randomizer.nextInt(250);
 
                         int rFundo = randomizer.nextInt(255);
                         int gFundo = randomizer.nextInt(255);
@@ -36,35 +36,39 @@ public class MyPanel extends JPanel {
 
                         if(e.getKeyChar() == 'r'){
 
-                            figures.add(new Rect(
-                                            //Tamanho do retangulo
-                                            x, y, w, h,
-
-                                            //Cor de contorno
-                                            new Color(rContorno, gContorno, bContorno),
-
-                                            //Cor de fundo
-                                            new Color(rFundo, gFundo, bFundo)
-
-                                    )
-
-                            );
+                            figures.add(new Rect(x, y, w, h, new Color(rContorno, gContorno, bContorno), new Color(rFundo, gFundo, bFundo)));
                             repaint();
                         }
 
                         else if(e.getKeyChar() == 'e'){
-                            figures.add(new Ellipse(
-                                            //Tamanho da ellipse
-                                            x, y, w, h,
+                            figures.add(new Ellipse(x, y, w, h, new Color(rContorno, gContorno, bContorno), new Color(rFundo, gFundo, bFundo)));
+                            repaint();
+                        }
 
-                                            //Cor de contorno
-                                            new Color(rContorno, gContorno, bContorno),
+                        else if(e.getKeyChar() == 't'){
 
-                                            //Cor de fundo
-                                            new Color(rFundo, gFundo, bFundo)
+                            int[] xPoints = {
 
-                                    )
-                            );
+                                        randomizer.nextInt(500),
+                                        randomizer.nextInt(500),
+                                        randomizer.nextInt(500)
+
+                                    };
+
+                            int[] yPoints = {
+
+                                    randomizer.nextInt(500),
+                                    randomizer.nextInt(500),
+                                    randomizer.nextInt(500)
+
+                                    };
+
+                            figures.add(new Triangle(xPoints, yPoints, 3, new Color(rContorno, gContorno, bContorno), new Color(rFundo, gFundo, bFundo)));
+                            repaint();
+                        }
+
+                        else if(e.getKeyChar() == 'c'){
+                            figures.removeAll(figures);
                             repaint();
                         }
                     }

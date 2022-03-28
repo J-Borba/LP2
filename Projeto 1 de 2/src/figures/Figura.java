@@ -40,9 +40,18 @@ public abstract class Figura {
     public int getW(){return w;}
     public int getH(){return h;}
 
-    public void resize(int dw, int dh){
-        w += dw;
-        h += dh;
+    public void setW(int dw){w = dw;}
+    public void setH(int dh){h = dh;}
+
+    public int resize(int dw, int dh){
+        if(dw < w - 15 && dh < h - 15){
+            w += dw;
+            h += dh;
+        }
+         else{
+             return 1;
+         }
+         return 0;
     }
 
     public abstract boolean pressed(int x, int y);

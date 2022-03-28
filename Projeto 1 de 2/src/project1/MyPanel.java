@@ -24,6 +24,9 @@ public class MyPanel extends JPanel{
 
     int clickX, clickY, whereX, whereY;
 
+    int prevW;
+    int prevH;
+
     public MyPanel(){
         this.addMouseMotionListener(new MouseMotionAdapter() {
             @Override
@@ -37,7 +40,12 @@ public class MyPanel extends JPanel{
                     if(clickX >= figuraFoco.getX()+figuraFoco.getW()-15 && clickX <= figuraFoco.getX()+figuraFoco.getW()+10 &&
                             clickY >= figuraFoco.getY()+figuraFoco.getH()-15 && clickY <= figuraFoco.getY()+figuraFoco.getH()+10)
                     {
-                        figuraFoco.resize(e.getX() - clickX, e.getY() - clickY);
+                        if(figuraFoco.resize(e.getX() - clickX, e.getY() - clickY) == 1){
+                            showMessageDialog(MyPanel.this, "Tamanho minimo atingido!");
+                            figuraFoco.setW(prevW);
+                            figuraFoco.setH(prevH);
+                        }
+
                     }
                     else
                     {
@@ -57,11 +65,14 @@ public class MyPanel extends JPanel{
                 figuraFoco = null;
                 clickX = e.getX();
                 clickY = e.getY();
+
                 repaint();
                 for (Figura figure : figures) {
                     figure.setFocus(false);
                     if (figure.pressed(e.getX(), e.getY())) {
                         figuraFoco = figure;
+                        prevH = figuraFoco.getH();
+                        prevW = figuraFoco.getW();
                     }
                 }
 
@@ -86,44 +97,36 @@ public class MyPanel extends JPanel{
                     if(e.getKeyCode() == VK_UP){
                         if(e.isShiftDown()){
                             figuraFoco.resize(0, -5);
-                            repaint();
                         }
                         else{
                             figuraFoco.setY(-10);
-                            repaint();
                         }
                     }
 
                     else if(e.getKeyCode() == VK_LEFT){
                         if(e.isShiftDown()){
                             figuraFoco.resize(-5, 0);
-                            repaint();
                         }
                         else{
                             figuraFoco.setX(-10);
-                            repaint();
                         }
                     }
 
                     else if(e.getKeyCode() == VK_DOWN){
                         if(e.isShiftDown()){
                             figuraFoco.resize(0, 5);
-                            repaint();
                         }
                         else{
                             figuraFoco.setY(10);
-                            repaint();
                         }
                     }
 
                     else if(e.getKeyCode() == VK_RIGHT){
                         if(e.isShiftDown()){
                             figuraFoco.resize(5, 0);
-                            repaint();
                         }
                         else{
                             figuraFoco.setX(10);
-                            repaint();
                         }
                     }
 
@@ -132,8 +135,8 @@ public class MyPanel extends JPanel{
                         if(figures.size() == 0){
                             figuraFoco = null;
                         }
-                        repaint();
                     }
+
 
                     else if(e.getKeyChar() == 'c'){
 
@@ -141,8 +144,6 @@ public class MyPanel extends JPanel{
                                 randomizer.nextInt(255),
                                 randomizer.nextInt(255),
                                 randomizer.nextInt(255)));
-
-                        repaint();
                     }
 
                     else if(e.getKeyChar() == 'f'){
@@ -151,9 +152,8 @@ public class MyPanel extends JPanel{
                                 randomizer.nextInt(255),
                                 randomizer.nextInt(255),
                                 randomizer.nextInt(255)));
-
-                        repaint();
                     }
+                    repaint();
                 }
                 else{
                     if(e.getKeyChar() == 'f'){
@@ -185,7 +185,6 @@ public class MyPanel extends JPanel{
                                          100,
                                             Color.black,
                                             Color.gray));
-                    repaint();
                 }
 
                 else if(e.getKeyChar() == 'e'){
@@ -195,8 +194,8 @@ public class MyPanel extends JPanel{
                             100,
                             Color.black,
                             Color.gray));
-                    repaint();
                 }
+                repaint();
             }
         });
 

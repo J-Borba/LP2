@@ -22,11 +22,15 @@ public class MyPanel extends JPanel{
 
     Random randomizer = new Random();
 
-    int clickX;
-    int clickY;
+    int clickX, clickY, whereX, whereY;
 
     public MyPanel(){
         this.addMouseMotionListener(new MouseMotionAdapter() {
+            @Override
+            public void mouseMoved(MouseEvent e){
+                whereX = e.getX();
+                whereY = e.getY();
+            }
             @Override
             public void mouseDragged(MouseEvent e) {
                 if(figuraFoco != null){
@@ -175,8 +179,8 @@ public class MyPanel extends JPanel{
                             "OBS: PARA SELECIONAR UMA FIGURA, BASTA CLICAR COM O MOUSE EM CIMA DELA");
                 }
                 else if(e.getKeyChar() == 'r'){
-                    figures.add(new Rect(MyPanel.super.getWidth()/2 - 50,
-                                         MyPanel.super.getHeight()/2 - 50,
+                    figures.add(new Rect(whereX - 50,
+                                         whereY - 50,
                                          100,
                                          100,
                                             Color.black,
@@ -185,8 +189,8 @@ public class MyPanel extends JPanel{
                 }
 
                 else if(e.getKeyChar() == 'e'){
-                    figures.add(new Ellipse(MyPanel.super.getWidth()/2 - 50,
-                            MyPanel.super.getHeight()/2 - 50,
+                    figures.add(new Ellipse(whereX - 50,
+                            whereY - 50,
                             100,
                             100,
                             Color.black,

@@ -1,9 +1,9 @@
-###Instruções de uso:
+### Instruções de uso:
 
     Aperte a tecla H para abrir a janela de ajuda
     à qualquer momento durante a execução do programa
 
-###Mapeamento do teclado:
+### Mapeamento do teclado:
 
     |E| - Criar uma elipse
 
@@ -21,7 +21,7 @@
 
     |SHIFT(SEGURAR) + SETAS| - Redimensionar a figura em foco
 
-###Mapeamento do mouse:
+### Mapeamento do mouse:
               -Se tiver uma figura onde foi clicado, a mesma entrará em foco.
              |
     |CLICAR|  -Ter uma figura em foco e clicar em uma área vazia

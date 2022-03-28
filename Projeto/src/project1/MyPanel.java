@@ -37,7 +37,7 @@ public class MyPanel extends JPanel{
                     if (clickX >= figuraFoco.getX() + figuraFoco.getW() - 15 && clickX <= figuraFoco.getX() + figuraFoco.getW() + 10 &&
                             clickY >= figuraFoco.getY() + figuraFoco.getH() - 15 && clickY <= figuraFoco.getY() + figuraFoco.getH() + 10)
                     {
-                        
+
                     }
                 }
             }

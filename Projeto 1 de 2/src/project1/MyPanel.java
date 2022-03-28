@@ -10,6 +10,8 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Random;
 
+import static javax.swing.JOptionPane.showMessageDialog;
+
 import static java.awt.event.KeyEvent.*;
 
 //Criando o panel
@@ -20,14 +22,27 @@ public class MyPanel extends JPanel{
 
     Random randomizer = new Random();
 
+    int clickX;
+    int clickY;
+
     public MyPanel(){
         this.addMouseMotionListener(new MouseMotionAdapter() {
             @Override
             public void mouseDragged(MouseEvent e) {
                 if(figuraFoco != null){
-                    figuraFoco.setMotionX(e.getX()-figuraFoco.getW()/2);
-                    figuraFoco.setMotionY(e.getY()-figuraFoco.getH()/2);
+                    if(clickX >= figuraFoco.getX()+figuraFoco.getW()-15 && clickX <= figuraFoco.getX()+figuraFoco.getW()+10 &&
+                            clickY >= figuraFoco.getY()+figuraFoco.getH()-15 && clickY <= figuraFoco.getY()+figuraFoco.getH()+10)
+                    {
+                        figuraFoco.resize(e.getX() - clickX, e.getY() - clickY);
+                    }
+                    else
+                    {
+                        figuraFoco.setX(e.getX() - clickX);
+                        figuraFoco.setY(e.getY() - clickY);
+                    }
                     repaint();
+                    clickX = e.getX();
+                    clickY = e.getY();
                 }
             }
         });
@@ -36,8 +51,9 @@ public class MyPanel extends JPanel{
             @Override
             public void mousePressed(MouseEvent e) {
                 figuraFoco = null;
+                clickX = e.getX();
+                clickY = e.getY();
                 repaint();
-
                 for (Figura figure : figures) {
                     figure.setFocus(false);
                     if (figure.pressed(e.getX(), e.getY())) {
@@ -109,6 +125,9 @@ public class MyPanel extends JPanel{
 
                     else if(e.getKeyCode() == VK_DELETE){
                         figures.remove(figuraFoco);
+                        if(figures.size() == 0){
+                            figuraFoco = null;
+                        }
                         repaint();
                     }
 
@@ -137,39 +156,41 @@ public class MyPanel extends JPanel{
                         MyPanel.super.setBackground(new Color(randomizer.nextInt(255), randomizer.nextInt(255), randomizer.nextInt(255)));
                     }
                 }
-                if(e.getKeyChar() == 'r'){
-                    int x = randomizer.nextInt(350);
-                    int y = randomizer.nextInt(350);
-
-                    int w = randomizer.nextInt(250);
-                    int h = randomizer.nextInt(250);
-
-                    int rFundo = randomizer.nextInt(255);
-                    int gFundo = randomizer.nextInt(255);
-                    int bFundo = randomizer.nextInt(255);
-
-                    int rContorno = randomizer.nextInt(255);
-                    int gContorno = randomizer.nextInt(255);
-                    int bContorno = randomizer.nextInt(255);
-                    figures.add(new Rect(x, y,w, h, new Color(rContorno, gContorno, bContorno), new Color(rFundo, gFundo, bFundo)));
+                if(e.getKeyChar() == 'h'){
+                    showMessageDialog(MyPanel.this, "Instruções de Uso:\n" +
+                            "\nPressionar as teclas:\n" +
+                            "\n" +
+                            "\"E\" para criar uma elipse\n" +
+                            "\n" +
+                            "\"R\" para criar um retangulo\n" +
+                            "\n" +
+                            "\"DELETE\" para deletar a figura selecionada\n" +
+                            "\n" +
+                            "\"F\" para mudar a cor de fundo da figura selecionada. Caso nao tenha nenhuma figura em foco, mudara a cor da tela toda \n" +
+                            "\n" +
+                            "\"C\" para mudar a cor de contorno da figura selecionada\n" +
+                            "\n" +
+                            "\"Pressione e arraste a borda inferior direita da figura ou segure SHIFT e use as setas do teclado\" para mudar o tamanho da figura selecionada\n" +
+                            "\n" +
+                            "OBS: PARA SELECIONAR UMA FIGURA, BASTA CLICAR COM O MOUSE EM CIMA DELA");
+                }
+                else if(e.getKeyChar() == 'r'){
+                    figures.add(new Rect(MyPanel.super.getWidth()/2 - 50,
+                                         MyPanel.super.getHeight()/2 - 50,
+                                         100,
+                                         100,
+                                            Color.black,
+                                            Color.gray));
                     repaint();
                 }
 
                 else if(e.getKeyChar() == 'e'){
-                    int x = randomizer.nextInt(350);
-                    int y = randomizer.nextInt(350);
-
-                    int w = randomizer.nextInt(250);
-                    int h = randomizer.nextInt(250);
-
-                    int rFundo = randomizer.nextInt(255);
-                    int gFundo = randomizer.nextInt(255);
-                    int bFundo = randomizer.nextInt(255);
-
-                    int rContorno = randomizer.nextInt(255);
-                    int gContorno = randomizer.nextInt(255);
-                    int bContorno = randomizer.nextInt(255);
-                    figures.add(new Ellipse(x, y, w, h, new Color(rContorno, gContorno, bContorno), new Color(rFundo, gFundo, bFundo)));
+                    figures.add(new Ellipse(MyPanel.super.getWidth()/2 - 50,
+                            MyPanel.super.getHeight()/2 - 50,
+                            100,
+                            100,
+                            Color.black,
+                            Color.gray));
                     repaint();
                 }
             }

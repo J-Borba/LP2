@@ -31,6 +31,9 @@ public class Ellipse extends Figura{
             g2d.setColor(Color.red);
             g2d.setStroke(new BasicStroke(2));
             g2d.draw(new Ellipse2D.Double(this.getX()-2, this.getY()-2, this.getW()+4, this.getH()+4));
+            g2d.setColor(Color.gray);
+            g2d.setStroke(new BasicStroke(0.5F));
+            g2d.draw(new Rectangle(this.getX()-2, this.getY()-2, this.getW()+4, this.getH()+4));
         }
     }
 }

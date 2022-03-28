@@ -29,9 +29,6 @@ public abstract class Figura {
     public void setX(int dx){x += dx;}
     public void setY(int dy){y += dy;}
 
-    public void setMotionX(int dx) {x = dx;}
-    public void setMotionY(int dy) {y = dy;}
-
     public boolean getFocus(){return focus;}
 
     public void setFocus(boolean foco){focus = foco;}
@@ -39,8 +36,8 @@ public abstract class Figura {
     public void setColorContorno(Color contorno){this.contorno = contorno;}
 
     public void setColorFundo(Color fundo){this.fundo = fundo;}
-    public int getW(){return w;}
 
+    public int getW(){return w;}
     public int getH(){return h;}
 
     public void resize(int dw, int dh){

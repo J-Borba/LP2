@@ -157,7 +157,7 @@ public class MyPanel extends JPanel{
                     }
                 }
                 if(e.getKeyChar() == 'h'){
-                    showMessageDialog(MyPanel.this, "Instruções de Uso:\n" +
+                    showMessageDialog(MyPanel.this, "Instruções de Uso:\n(Aperte H para abrir esta janela a qualquer momento):\n" +
                             "\nPressionar as teclas:\n" +
                             "\n" +
                             "\"E\" para criar uma elipse\n" +

@@ -200,7 +200,6 @@ public class MyPanel extends JPanel{
         });
 
         this.setFocusable(true);
-        this.requestFocusInWindow();
 
         //Definindo tamanho da janela
         this.setPreferredSize(new Dimension(600, 600));

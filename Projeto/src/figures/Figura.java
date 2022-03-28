@@ -44,7 +44,7 @@ public abstract class Figura {
     public void setH(int dh){h = dh;}
 
     public int resize(int dw, int dh){
-        if(dw < w - 15 && dh < h - 15){
+        if(dw <= w-1 && dh <= h-1){
             w += dw;
             h += dh;
         }

@@ -19,8 +19,6 @@
 
     |SETAS| - Movimentar a figura em foco pelos eixos X e Y
 
-    |SHIFT(SEGURAR) + SETAS| - Redimensionar a figura em foco
-
 ### Mapeamento do mouse:
               -Se tiver uma figura onde foi clicado, a mesma entrará em foco.
              |

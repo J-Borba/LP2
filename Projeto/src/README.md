@@ -20,12 +20,10 @@
     |SETAS| - Movimentar a figura em foco pelos eixos X e Y
 
 ### Mapeamento do mouse:
-              -Se tiver uma figura onde foi clicado, a mesma entrará em foco.
-             |
-    |CLICAR|  -Ter uma figura em foco e clicar em uma área vazia
-             | 
-              -removerá o foco da figura anteriormente selecionada
 
+              -Se tiver uma figura onde foi clicado, a mesma entrará em foco.
+    |CLICAR| | 
+              -Ter uma figura em foco e clicar em uma área vazia, removerá o foco da figura anteriormente selecionada
 
                           -Qualquer lugar da figura: Mover
     |SEGURAR E ARRASTAR| |

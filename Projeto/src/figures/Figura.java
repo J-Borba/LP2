@@ -26,8 +26,7 @@ public abstract class Figura {
     public int getX(){return x;}
     public int getY(){return y;}
 
-    public void setX(int dx){x += dx;}
-    public void setY(int dy){y += dy;}
+    public void setPosition(int dx, int dy){x += dx; y += dy;}
 
     public boolean getFocus(){return focus;}
 
@@ -40,8 +39,7 @@ public abstract class Figura {
     public int getW(){return w;}
     public int getH(){return h;}
 
-    public void setW(int dw){w = dw;}
-    public void setH(int dh){h = dh;}
+    public void setSize(int dw, int dh){w = dw; h = dh;}
 
     public int resize(int dw, int dh){
         if(dw <= w-1 && dh <= h-1){

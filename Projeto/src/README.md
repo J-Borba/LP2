@@ -11,9 +11,9 @@
 
     |DEL| - Apagar a figura selecionada
 
-         - Mudar a cor de fundo da figura em foco;
-    |F| |
-         - Caso não tenha, mudará a cor da tela toda
+    |F| - Mudar a cor de fundo da figura em foco;
+
+    |B| - Mudar a cor da tela toda
 
     |C| - Mudar a cor de contorno da figura selecionada
 

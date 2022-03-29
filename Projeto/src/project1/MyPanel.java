@@ -31,21 +31,56 @@ public class MyPanel extends JPanel{
         this.addMouseMotionListener(new MouseMotionAdapter() {
             @Override
             public void mouseMoved(MouseEvent e) {
+                figuraFoco = null;
                 whereX = e.getX();
                 whereY = e.getY();
-                if (figuraFoco != null) {
-                    if (clickX >= figuraFoco.getX() + figuraFoco.getW() - 15 && clickX <= figuraFoco.getX() + figuraFoco.getW() + 10 &&
-                            clickY >= figuraFoco.getY() + figuraFoco.getH() - 15 && clickY <= figuraFoco.getY() + figuraFoco.getH() + 10)
-                    {
 
+                Cursor resizeCur = new Cursor(Cursor.SE_RESIZE_CURSOR);
+                Cursor defaultCur = new Cursor(Cursor.DEFAULT_CURSOR);
+                Cursor moveCur = new Cursor(Cursor.MOVE_CURSOR);
+
+                for (Figura figura : figures) {
+                    figura.setFocus(false);
+                    if (whereX >= figura.getX() && whereX <= (figura.getX() + figura.getW()) && whereY >= figura.getY() && whereY <= (figura.getY() + figura.getH())) {
+                        figuraFoco = figura;
                     }
+                }
+
+                if(figuraFoco != null){
+                    for(int j=figures.size()-1; j >= 0; j--){
+                        if(figuraFoco == figures.get(j)){
+                            figures.get(j).setFocus(true);
+                            figures.remove(figures.get(j));
+                            figures.add(figuraFoco);
+                        }
+                    }
+                }
+
+                if (figuraFoco != null) {
+                    if (whereX >= figuraFoco.getX() + figuraFoco.getW()-5 && whereX <= figuraFoco.getX() + figuraFoco.getW() &&
+                            whereY >= figuraFoco.getY() + figuraFoco.getH()-5 && whereY <= figuraFoco.getY() + figuraFoco.getH())
+                    {
+                        MyPanel.super.setCursor(resizeCur);
+                    }
+
+                    else if(whereX >= figuraFoco.getX() && whereX <= (figuraFoco.getX() + figuraFoco.getW()) && whereY >= figuraFoco.getY() && whereY <= (figuraFoco.getY() + figuraFoco.getH())){
+                        MyPanel.super.setCursor(moveCur);
+                    }
+
+                    else
+                    {
+                        MyPanel.super.setCursor(defaultCur);
+                    }
+                }
+                else{
+                    MyPanel.super.setCursor(defaultCur);
                 }
             }
             @Override
             public void mouseDragged(MouseEvent e) {
                 if(figuraFoco != null){
-                    if(clickX >= figuraFoco.getX()+figuraFoco.getW()-15 && clickX <= figuraFoco.getX()+figuraFoco.getW()+10 &&
-                            clickY >= figuraFoco.getY()+figuraFoco.getH()-15 && clickY <= figuraFoco.getY()+figuraFoco.getH()+10)
+                    if(clickX >= figuraFoco.getX()+figuraFoco.getW()-5 && clickX <= figuraFoco.getX()+figuraFoco.getW()+5 &&
+                            clickY >= figuraFoco.getY()+figuraFoco.getH()-5 && clickY <= figuraFoco.getY()+figuraFoco.getH()+5)
                     {
                         if(figuraFoco.resize(e.getX() - clickX, e.getY() - clickY) == 1){
                             showMessageDialog(MyPanel.this, "Tamanho minimo atingido!");
@@ -140,10 +175,60 @@ public class MyPanel extends JPanel{
                                 randomizer.nextInt(255),
                                 randomizer.nextInt(255)));
                     }
+                repaint();
+                }
+                if(e.getKeyChar() == 'r'){
+                    figuraFoco = null;
+                    for (Figura figure : figures) {
+                        figure.setFocus(false);
+                    }
+                    repaint();
+                    figuraFoco =  new Rect(whereX - 50,
+                            whereY - 50,
+                            100,
+                            100,
+                            Color.black,
+                            Color.gray);
+
+                    figures.add(figuraFoco);
+
+                    for(int j=0; j < figures.size(); j++){
+                        if(figuraFoco == figures.get(j)){
+                            figures.get(j).setFocus(true);
+                            figures.remove(figures.get(j));
+                            figures.add(figuraFoco);
+                        }
+                    }
                     repaint();
                 }
+
+                else if(e.getKeyChar() == 'e'){
+                    figuraFoco = null;
+                    for (Figura figure : figures) {
+                        figure.setFocus(false);
+                    }
+                    repaint();
+                    figuraFoco =  new Ellipse(whereX - 50,
+                            whereY - 50,
+                            100,
+                            100,
+                            Color.black,
+                            Color.gray);
+
+                    figures.add(figuraFoco);
+
+                    for(int j=0; j < figures.size(); j++){
+                        if(figuraFoco == figures.get(j)){
+                            figures.get(j).setFocus(true);
+                            figures.remove(figures.get(j));
+                            figures.add(figuraFoco);
+                        }
+                    }
+                    repaint();
+                }
+
                 else{
-                    if(e.getKeyChar() == 'f'){
+                    if(e.getKeyChar() == 'b'){
                         MyPanel.super.setBackground(new Color(randomizer.nextInt(255), randomizer.nextInt(255), randomizer.nextInt(255)));
                     }
                 }
@@ -160,7 +245,9 @@ public class MyPanel extends JPanel{
                 
                     "DELETE" para deletar a figura selecionada
                 
-                    "F" para mudar a cor de fundo da figura selecionada. Caso nao tenha nenhuma figura em foco, mudara a cor da tela toda
+                    "F" para mudar a cor de fundo da figura selecionada
+                     
+                    "B" para mudar a a cor da tela toda
                 
                     "C" para mudar a cor de contorno da figura selecionada
                 
@@ -168,23 +255,7 @@ public class MyPanel extends JPanel{
                 
                     OBS: PARA SELECIONAR UMA FIGURA, BASTA CLICAR COM O MOUSE EM CIMA DELA""");
                 }
-                else if(e.getKeyChar() == 'r'){
-                    figures.add(new Rect(whereX - 50,
-                                         whereY - 50,
-                                         100,
-                                         100,
-                                            Color.black,
-                                            Color.gray));
-                }
 
-                else if(e.getKeyChar() == 'e'){
-                    figures.add(new Ellipse(whereX - 50,
-                            whereY - 50,
-                            100,
-                            100,
-                            Color.black,
-                            Color.gray));
-                }
                 repaint();
             }
         });

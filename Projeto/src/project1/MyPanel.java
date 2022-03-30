@@ -10,13 +10,17 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Random;
 
+import static java.awt.Toolkit.getDefaultToolkit;
 import static javax.swing.JOptionPane.showMessageDialog;
 
 import static java.awt.event.KeyEvent.*;
+import static javax.swing.JOptionPane.showOptionDialog;
 
 //Criando o panel
 public class MyPanel extends JPanel
 {
+    ImageIcon icone = new ImageIcon(getDefaultToolkit().getImage(getClass().getResource("logo.png")));
+
     ArrayList<Figura> figures = new ArrayList<>();
     Figura figuraFoco = null;
     Figura figuraMouse = null;
@@ -123,10 +127,52 @@ public class MyPanel extends JPanel
                     figure.setFocus(false);
                     if (figure.pressed(e.getX(), e.getY()))
                     {
-                        MyPanel.super.setCursor(moveCur);
                         figuraFoco = figure;
                         prevH = figuraFoco.getH();
                         prevW = figuraFoco.getW();
+
+                        if(e.getButton() == MouseEvent.BUTTON1)
+                        {
+                            if(MyPanel.super.getCursor() != resizeCur)
+                            {
+                                MyPanel.super.setCursor(moveCur);
+                            }
+
+                        }
+                        else
+                        {
+                            Object[] options = {"Fundo", "Contorno"};
+
+                            int escolha = showOptionDialog(null, "Deseja trocar a cor de qual parte da figura?", "Troca de cor", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, icone, options, options[0]);
+
+                            if(escolha == 0)
+                            {
+                                Color cor = JColorChooser.showDialog(null, "Seletor de cores!", figuraFoco.getColorFundo());
+                                figuraFoco.setColorFundo(cor);
+                            }
+                            else if(escolha == 1)
+                            {
+                                Color cor = JColorChooser.showDialog(null, "Seletor de cores!", figuraFoco.getColorContorno());
+                                figuraFoco.setColorContorno(cor);
+                            }
+
+
+                        }
+                    }
+                    repaint();
+                }
+
+                if(figuraFoco == null){
+                    if(e.getButton() == MouseEvent.BUTTON3)
+                    {
+                        Object[] options = {"Sim", "Nao"};
+                        int escolha = showOptionDialog(null, "Deseja mudar a cor da tela toda? ", "Troca de cor", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, icone, options, options[0]);
+
+                        if(escolha == 0)
+                        {
+                            Color cor = JColorChooser.showDialog(null, "Seletor de cores!", MyPanel.super.getBackground());
+                            MyPanel.super.setBackground(cor);
+                        }
                     }
                 }
 
@@ -184,18 +230,19 @@ public class MyPanel extends JPanel
 
                     else if(e.getKeyChar() == 'c')
                     {
-                        figuraFoco.setColorContorno(new Color(
-                                randomizer.nextInt(255),
-                                randomizer.nextInt(255),
-                                randomizer.nextInt(255)));
-                    }
+                        Object[] options = {"Fundo", "Contorno"};
+                        int escolha = showOptionDialog(null, "Deseja trocar a cor de qual parte da figura?", "Troca de cor", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, icone, options, options[0]);
 
-                    else if(e.getKeyChar() == 'f')
-                    {
-                        figuraFoco.setColorFundo(new Color(
-                                randomizer.nextInt(255),
-                                randomizer.nextInt(255),
-                                randomizer.nextInt(255)));
+                        if(escolha == 0)
+                        {
+                            Color cor = JColorChooser.showDialog(null, "Seletor de cores!", figuraFoco.getColorFundo());
+                            figuraFoco.setColorFundo(cor);
+                        }
+                        else if(escolha == 1)
+                        {
+                            Color cor = JColorChooser.showDialog(null, "Seletor de cores!", figuraFoco.getColorContorno());
+                            figuraFoco.setColorContorno(cor);
+                        }
                     }
                 repaint();
                 }
@@ -263,7 +310,15 @@ public class MyPanel extends JPanel
                 {
                     if(e.getKeyChar() == 'b')
                     {
-                        MyPanel.super.setBackground(new Color(randomizer.nextInt(255), randomizer.nextInt(255), randomizer.nextInt(255)));
+                        Object[] options = {"Sim", "Nao"};
+
+                        int escolha = showOptionDialog(null, "Deseja mudar a cor da tela toda? ", "Troca de cor", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, icone, options, options[0]);
+
+                        if(escolha == 0)
+                        {
+                            Color cor = JColorChooser.showDialog(null, "Seletor de cores!", MyPanel.super.getBackground());
+                            MyPanel.super.setBackground(cor);
+                        }
                     }
                 }
                 if(e.getKeyChar() == 'h')

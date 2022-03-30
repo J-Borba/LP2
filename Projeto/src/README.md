@@ -11,19 +11,21 @@
 
     |DEL| - Apagar a figura selecionada
 
-    |F| - Mudar a cor de fundo da figura em foco;
+    |F| - Mudar a cor da figura selecionada
 
     |B| - Mudar a cor da tela toda
-
-    |C| - Mudar a cor de contorno da figura selecionada
 
     |SETAS| - Movimentar a figura em foco pelos eixos X e Y
 
 ### Mapeamento do mouse:
 
-              -Se tiver uma figura onde foi clicado, a mesma entrará em foco.
-    |CLICAR| | 
-              -Ter uma figura em foco e clicar em uma área vazia, removerá o foco da figura anteriormente selecionada
+                             -Se tiver uma figura onde foi clicado, a mesma entrará em foco.
+    |CLICAR BOTAO ESQUERDO| | 
+                             -Ter uma figura em foco e clicar em uma área vazia, removerá o foco da figura anteriormente selecionada
+
+                            -Se tiver uma figura onde foi clicado, muda a cor da figura
+    |CLICAR BOTAO DIREITO| | 
+                            -Caso nao tenha, muda a cor do Background
 
                           -Qualquer lugar da figura: Mover
     |SEGURAR E ARRASTAR| |

@@ -32,8 +32,10 @@ public abstract class Figura {
 
     public void setFocus(boolean foco){focus = foco;}
 
+    public Color getColorContorno(){return this.contorno;}
     public void setColorContorno(Color contorno){this.contorno = contorno;}
 
+    public Color getColorFundo(){return this.fundo;}
     public void setColorFundo(Color fundo){this.fundo = fundo;}
 
     public int getW(){return w;}

@@ -21,6 +21,11 @@ public class MyPanel extends JPanel
     Figura figuraFoco = null;
     Figura figuraMouse = null;
 
+    Cursor resizeCur = new Cursor(Cursor.SE_RESIZE_CURSOR);
+    Cursor defaultCur = new Cursor(Cursor.DEFAULT_CURSOR);
+    Cursor moveCur = new Cursor(Cursor.MOVE_CURSOR);
+    Cursor handCur = new Cursor(Cursor.HAND_CURSOR);
+
     Random randomizer = new Random();
 
     int clickX, clickY, whereX, whereY;
@@ -38,10 +43,6 @@ public class MyPanel extends JPanel
                 figuraMouse = null;
                 whereX = e.getX();
                 whereY = e.getY();
-
-                Cursor resizeCur = new Cursor(Cursor.SE_RESIZE_CURSOR);
-                Cursor defaultCur = new Cursor(Cursor.DEFAULT_CURSOR);
-                Cursor moveCur = new Cursor(Cursor.MOVE_CURSOR);
 
                 for (Figura figura : figures)
                 {
@@ -62,7 +63,14 @@ public class MyPanel extends JPanel
                     else if(whereX >= figuraMouse.getX() && whereX <= (figuraMouse.getX() + figuraMouse.getW()) &&
                             whereY >= figuraMouse.getY() && whereY <= (figuraMouse.getY() + figuraMouse.getH()))
                     {
-                        MyPanel.super.setCursor(moveCur);
+                        if(figuraMouse == figuraFoco)
+                        {
+                            MyPanel.super.setCursor(moveCur);
+                        }
+                        else
+                        {
+                            MyPanel.super.setCursor(handCur);
+                        }
                     }
 
                     else
@@ -115,6 +123,7 @@ public class MyPanel extends JPanel
                     figure.setFocus(false);
                     if (figure.pressed(e.getX(), e.getY()))
                     {
+                        MyPanel.super.setCursor(moveCur);
                         figuraFoco = figure;
                         prevH = figuraFoco.getH();
                         prevW = figuraFoco.getW();

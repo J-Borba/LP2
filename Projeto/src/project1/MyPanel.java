@@ -8,8 +8,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
-import java.util.Objects;
-import java.util.Random;
 
 import static java.awt.Toolkit.getDefaultToolkit;
 import static javax.swing.JOptionPane.showMessageDialog;
@@ -26,7 +24,12 @@ public class MyPanel extends JPanel
     Figura figuraFoco = null;
     Figura figuraMouse = null;
 
-    Cursor resizeCur = new Cursor(Cursor.SE_RESIZE_CURSOR);
+    Cursor nResizeCur = new Cursor(Cursor.N_RESIZE_CURSOR);
+    Cursor sResizeCur = new Cursor(Cursor.S_RESIZE_CURSOR);
+    Cursor eResizeCur = new Cursor(Cursor.E_RESIZE_CURSOR);
+    Cursor wResizeCur = new Cursor(Cursor.W_RESIZE_CURSOR);
+    Cursor seResizeCur = new Cursor(Cursor.SE_RESIZE_CURSOR);
+
     Cursor defaultCur = new Cursor(Cursor.DEFAULT_CURSOR);
     Cursor moveCur = new Cursor(Cursor.MOVE_CURSOR);
     Cursor handCur = new Cursor(Cursor.HAND_CURSOR);
@@ -63,7 +66,31 @@ public class MyPanel extends JPanel
                     if (whereX >= coordenada[0] + tamanho[0]-5 && whereX <= coordenada[0] + tamanho[0] &&
                             whereY >= coordenada[1] + tamanho[1]-5 && whereY <= coordenada[1] + tamanho[1])
                     {
-                        MyPanel.super.setCursor(resizeCur);
+                        MyPanel.super.setCursor(seResizeCur);
+                    }
+
+                    else if(whereX >= coordenada[0] && whereX <= coordenada[0] + tamanho[0] &&
+                            whereY >= coordenada[1] && whereY <= coordenada[1] + 5)
+                    {
+                        MyPanel.super.setCursor(nResizeCur);
+                    }
+
+                    else if(whereX >= coordenada[0] && whereX <= coordenada[0] + tamanho[0] &&
+                            whereY >= coordenada[1] + tamanho[1] - 5 && whereY <= coordenada[1] + tamanho[1])
+                    {
+                        MyPanel.super.setCursor(sResizeCur);
+                    }
+
+                    else if(whereX >= coordenada[0] && whereX <= coordenada[0] + 5 &&
+                            whereY >= coordenada[1] && whereY <= coordenada[1] + tamanho[1])
+                    {
+                        MyPanel.super.setCursor(eResizeCur);
+                    }
+
+                    else if(whereX >= coordenada[0] + tamanho[0] - 5 && whereX <= coordenada[0] + tamanho[0] &&
+                            whereY >= coordenada[1] && whereY <= coordenada[1] + tamanho[1])
+                    {
+                        MyPanel.super.setCursor(wResizeCur);
                     }
 
                     else if(whereX >= coordenada[0] && whereX <= (coordenada[0] + tamanho[0]) &&
@@ -93,35 +120,37 @@ public class MyPanel extends JPanel
             public void mouseDragged(MouseEvent e)
             {
                 if(figuraFoco != null){
-                    coordenada = figuraFoco.getPosition();
-                    tamanho = figuraFoco.getSize();
 
-                    int[] dTamanho  = {e.getX()-clickX, e.getY()-clickY};
+                    if(MyPanel.super.getCursor() == seResizeCur)
+                    {
+                        figuraFoco.resize(new int[]{e.getX()-clickX, e.getY()-clickY, 5});
+                    }
 
-                    if(clickX >= coordenada[0] + tamanho[0]-5 && clickX <= coordenada[0] + tamanho[0]+5 &&
-                            clickY >= coordenada[1] + tamanho[1]-5 && clickY <= coordenada[1] + tamanho[1]+5)
+                    else if(MyPanel.super.getCursor() == nResizeCur)
                     {
-                        if(figuraFoco.getSize()[0] <= 10)
-                        {
-                            figuraFoco.setSize(new int[]{11, figuraFoco.getSize()[1]});
-                        }
-                        else if(figuraFoco.getSize()[1] <= 10)
-                        {
-                            figuraFoco.setSize(new int[]{figuraFoco.getSize()[0], 11});
-                        }
-                        else if(figuraFoco.getSize()[0] <= 10  && figuraFoco.getSize()[1] <= 10)
-                        {
-                            figuraFoco.setSize(new int[]{11, 11});
-                        }
-                        else
-                        {
-                            figuraFoco.resize(dTamanho);
-                        }
+                        figuraFoco.resize(new int[]{e.getX()-clickX, e.getY()-clickY, 1});
                     }
-                    else
+
+                    else if(MyPanel.super.getCursor() == sResizeCur)
                     {
-                        figuraFoco.setPosition(dTamanho);
+                        figuraFoco.resize(new int[]{e.getX()-clickX, e.getY()-clickY, 2});
                     }
+
+                    else if(MyPanel.super.getCursor() == eResizeCur)
+                    {
+                        figuraFoco.resize(new int[]{e.getX()-clickX, e.getY()-clickY, 3});
+                    }
+
+                    else if(MyPanel.super.getCursor() == wResizeCur)
+                    {
+                        figuraFoco.resize(new int[]{e.getX()-clickX, e.getY()-clickY, 4});
+                    }
+
+                    else if (MyPanel.super.getCursor() == moveCur)
+                    {
+                        figuraFoco.setPosition(new int[] {e.getX()-clickX, e.getY()-clickY});
+                    }
+
                     repaint();
                     clickX = e.getX();
                     clickY = e.getY();
@@ -151,7 +180,10 @@ public class MyPanel extends JPanel
 
                         if(e.getButton() == MouseEvent.BUTTON1)
                         {
-                            if(MyPanel.super.getCursor() != resizeCur)
+                            Cursor curCursor = MyPanel.super.getCursor();
+
+                            if(curCursor != seResizeCur && curCursor != nResizeCur && curCursor != sResizeCur &&
+                               curCursor != eResizeCur && curCursor != wResizeCur)
                             {
                                 MyPanel.super.setCursor(moveCur);
                             }

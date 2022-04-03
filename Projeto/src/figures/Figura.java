@@ -28,7 +28,7 @@ public abstract class Figura {
 
     public abstract int[] getSize();
 
-    public abstract int resize(int[] dTamanho);
+    public abstract void resize(int[] dTamanho);
 
     public boolean getFocus(){return focus;}
 

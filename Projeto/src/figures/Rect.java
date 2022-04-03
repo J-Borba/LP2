@@ -42,15 +42,9 @@ public class Rect extends Figura{
     }
 
     @Override
-    public int resize(int[] dTamanho){
-        if(dTamanho[0] <= w-1 && dTamanho[1] <= h-1){
-            w += dTamanho[0];
-            h += dTamanho[1];
-        }
-        else{
-            return 1;
-        }
-        return 0;
+    public void resize(int[] dTamanho){
+        w += dTamanho[0];
+        h += dTamanho[1];
     }
 
     @Override

@@ -101,13 +101,22 @@ public class MyPanel extends JPanel
                     if(clickX >= coordenada[0] + tamanho[0]-5 && clickX <= coordenada[0] + tamanho[0]+5 &&
                             clickY >= coordenada[1] + tamanho[1]-5 && clickY <= coordenada[1] + tamanho[1]+5)
                     {
-                        if(figuraFoco.resize(dTamanho) == 1)
+                        if(figuraFoco.getSize()[0] <= 10)
                         {
-
-                            showMessageDialog(MyPanel.this, "Tamanho minimo atingido!");
-                            figuraFoco.setSize(oldSize);
+                            figuraFoco.setSize(new int[]{11, figuraFoco.getSize()[1]});
                         }
-
+                        else if(figuraFoco.getSize()[1] <= 10)
+                        {
+                            figuraFoco.setSize(new int[]{figuraFoco.getSize()[0], 11});
+                        }
+                        else if(figuraFoco.getSize()[0] <= 10  && figuraFoco.getSize()[1] <= 10)
+                        {
+                            figuraFoco.setSize(new int[]{11, 11});
+                        }
+                        else
+                        {
+                            figuraFoco.resize(dTamanho);
+                        }
                     }
                     else
                     {

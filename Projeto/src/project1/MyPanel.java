@@ -148,7 +148,7 @@ public class MyPanel extends JPanel
                             }
 
                         }
-                        else
+                        else if(e.getButton() == MouseEvent.BUTTON3)
                         {
                             Object[] options = {"Fundo", "Contorno"};
 

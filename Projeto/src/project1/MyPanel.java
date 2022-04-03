@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Random;
 
 import static java.awt.Toolkit.getDefaultToolkit;
@@ -30,12 +31,9 @@ public class MyPanel extends JPanel
     Cursor moveCur = new Cursor(Cursor.MOVE_CURSOR);
     Cursor handCur = new Cursor(Cursor.HAND_CURSOR);
 
-    Random randomizer = new Random();
+    int[] coordenada, tamanho, oldSize;
 
     int clickX, clickY, whereX, whereY;
-
-    int prevW;
-    int prevH;
 
     public MyPanel()
     {
@@ -48,24 +46,28 @@ public class MyPanel extends JPanel
                 whereX = e.getX();
                 whereY = e.getY();
 
-                for (Figura figura : figures)
-                {
-                    if (whereX >= figura.getX() && whereX <= (figura.getX() + figura.getW()) && whereY >= figura.getY() && whereY <= (figura.getY() + figura.getH()))
-                    {
+                for (Figura figura : figures) {
+                    coordenada = figura.getPosition();
+                    tamanho = figura.getSize();
+
+                    if (whereX >= coordenada[0] && whereX <= (coordenada[0] + tamanho[0]) && whereY >= coordenada[1] && whereY <= (coordenada[1] + tamanho[1])) {
                         figuraMouse = figura;
                     }
                 }
 
                 if (figuraMouse != null)
                 {
-                    if (whereX >= figuraMouse.getX() + figuraMouse.getW()-5 && whereX <= figuraMouse.getX() + figuraMouse.getW() &&
-                            whereY >= figuraMouse.getY() + figuraMouse.getH()-5 && whereY <= figuraMouse.getY() + figuraMouse.getH())
+                    coordenada = figuraMouse.getPosition();
+                    tamanho = figuraMouse.getSize();
+
+                    if (whereX >= coordenada[0] + tamanho[0]-5 && whereX <= coordenada[0] + tamanho[0] &&
+                            whereY >= coordenada[1] + tamanho[1]-5 && whereY <= coordenada[1] + tamanho[1])
                     {
                         MyPanel.super.setCursor(resizeCur);
                     }
 
-                    else if(whereX >= figuraMouse.getX() && whereX <= (figuraMouse.getX() + figuraMouse.getW()) &&
-                            whereY >= figuraMouse.getY() && whereY <= (figuraMouse.getY() + figuraMouse.getH()))
+                    else if(whereX >= coordenada[0] && whereX <= (coordenada[0] + tamanho[0]) &&
+                            whereY >= coordenada[1] && whereY <= (coordenada[1] + tamanho[1]))
                     {
                         if(figuraMouse == figuraFoco)
                         {
@@ -91,19 +93,25 @@ public class MyPanel extends JPanel
             public void mouseDragged(MouseEvent e)
             {
                 if(figuraFoco != null){
-                    if(clickX >= figuraFoco.getX()+figuraFoco.getW()-5 && clickX <= figuraFoco.getX()+figuraFoco.getW()+5 &&
-                            clickY >= figuraFoco.getY()+figuraFoco.getH()-5 && clickY <= figuraFoco.getY()+figuraFoco.getH()+5)
+                    coordenada = figuraFoco.getPosition();
+                    tamanho = figuraFoco.getSize();
+
+                    int[] dTamanho  = {e.getX()-clickX, e.getY()-clickY};
+
+                    if(clickX >= coordenada[0] + tamanho[0]-5 && clickX <= coordenada[0] + tamanho[0]+5 &&
+                            clickY >= coordenada[1] + tamanho[1]-5 && clickY <= coordenada[1] + tamanho[1]+5)
                     {
-                        if(figuraFoco.resize(e.getX() - clickX, e.getY() - clickY) == 1)
+                        if(figuraFoco.resize(dTamanho) == 1)
                         {
+
                             showMessageDialog(MyPanel.this, "Tamanho minimo atingido!");
-                            figuraFoco.setSize(prevW, prevH);
+                            figuraFoco.setSize(oldSize);
                         }
 
                     }
                     else
                     {
-                        figuraFoco.setPosition(e.getX() - clickX, e.getY() - clickY);
+                        figuraFoco.setPosition(dTamanho);
                     }
                     repaint();
                     clickX = e.getX();
@@ -125,11 +133,12 @@ public class MyPanel extends JPanel
                 for (Figura figure : figures)
                 {
                     figure.setFocus(false);
-                    if (figure.pressed(e.getX(), e.getY()))
+                    coordenada = new int[]{e.getX(), e.getY()};
+
+                    if (figure.pressed(coordenada))
                     {
                         figuraFoco = figure;
-                        prevH = figuraFoco.getH();
-                        prevW = figuraFoco.getW();
+                        oldSize = figuraFoco.getSize();
 
                         if(e.getButton() == MouseEvent.BUTTON1)
                         {
@@ -200,22 +209,22 @@ public class MyPanel extends JPanel
                 {
                     if(e.getKeyCode() == VK_UP)
                     {
-                        figuraFoco.setPosition(0, -10);
+                        figuraFoco.setPosition(new int[]{0, -10});
                     }
 
                     else if(e.getKeyCode() == VK_LEFT)
                     {
-                        figuraFoco.setPosition(-10, 0);
+                        figuraFoco.setPosition(new int[]{-10, 0});
                     }
 
                     else if(e.getKeyCode() == VK_DOWN)
                     {
-                        figuraFoco.setPosition(0, 10);
+                        figuraFoco.setPosition(new int[]{0, 10});
                     }
 
                     else if(e.getKeyCode() == VK_RIGHT)
                     {
-                        figuraFoco.setPosition(10, 0);
+                        figuraFoco.setPosition(new int[]{10, 0});
                     }
 
                     else if(e.getKeyCode() == VK_DELETE)

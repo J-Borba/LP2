@@ -1,9 +1,6 @@
 package project1;
 
-import figures.Ellipse;
-import figures.Figura;
-import figures.Rect;
-import figures.Triangle;
+import figures.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -62,7 +59,7 @@ public class MyPanel extends JPanel
                         }
                     }
 
-                    else if(figura.getType().equals("Triang"))
+                    else if(figura.getType().equals("Triang") || figura.getType().equals("Losang"))
                     {
                         if(figura.pressed(new int[]{whereX, whereY}))
                         {
@@ -151,6 +148,30 @@ public class MyPanel extends JPanel
                         }
 
                     }
+                    else if(figuraMouse.getType().equals("Losang"))
+                    {
+                        if(figuraMouse.corner(new int[] {whereX, whereY}))
+                        {
+                            MyPanel.super.setCursor(sResizeCur);
+                        }
+
+                        else if(figuraMouse.pressed(new int[]{whereX, whereY}))
+                        {
+                            if(figuraMouse == figuraFoco)
+                            {
+                                MyPanel.super.setCursor(moveCur);
+                            }
+                            else
+                            {
+                                MyPanel.super.setCursor(handCur);
+                            }
+                        }
+                        else
+                        {
+                            MyPanel.super.setCursor(defaultCur);
+                        }
+
+                    }
                 }
                 else
                 {
@@ -194,13 +215,13 @@ public class MyPanel extends JPanel
                             figuraFoco.setPosition(new int[] {e.getX()-clickX, e.getY()-clickY});
                         }
                     }
-                    else if(figuraFoco.getType().equals("Triang"))
+                    else if(figuraFoco.getType().equals("Triang") || figuraFoco.getType().equals("Losang"))
                     {
                         if(MyPanel.super.getCursor() == moveCur)
                         {
                             figuraFoco.setPosition(new int[] {e.getX()-clickX, e.getY()-clickY});
                         }
-                        else if(MyPanel.super.getCursor() == seResizeCur)
+                        else if(MyPanel.super.getCursor() == seResizeCur || MyPanel.super.getCursor() == sResizeCur)
                         {
                             figuraFoco.resize(new int[] {e.getX()-clickX, e.getY()-clickY});
                         }
@@ -425,6 +446,39 @@ public class MyPanel extends JPanel
                             whereY-75,
                             whereX+50,
                             whereY+50,
+                            Color.black,
+                            Color.gray);
+
+                    figures.add(figuraFoco);
+
+                    for(int j=0; j < figures.size(); j++)
+                    {
+                        if(figuraFoco == figures.get(j))
+                        {
+                            figures.get(j).setFocus(true);
+                            figures.remove(figures.get(j));
+                            figures.add(figuraFoco);
+                        }
+                    }
+                    repaint();
+                }
+                else if(e.getKeyChar() == 'l')
+                {
+                    figuraFoco = null;
+                    for (Figura figure : figures)
+                    {
+                        figure.setFocus(false);
+                    }
+                    repaint();
+                    figuraFoco =  new Losango(
+                            whereX-50,
+                            whereY+50,
+                            whereX,
+                            whereY-50,
+                            whereX+50,
+                            whereY+50,
+                            whereX,
+                            whereY+150,
                             Color.black,
                             Color.gray);
 

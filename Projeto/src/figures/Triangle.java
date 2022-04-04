@@ -43,8 +43,8 @@ public class Triangle extends Figura{
     @Override
     public int[] getPosition() {
         return new int[] {this.pontosX[0], this.pontosY[0],
-                          this.pontosX[1], this.pontosY[1],
-                          this.pontosX[2], this.pontosY[2]};
+                this.pontosX[1], this.pontosY[1],
+                this.pontosX[2], this.pontosY[2]};
     }
 
     @Override
@@ -55,8 +55,8 @@ public class Triangle extends Figura{
     @Override
     public int[] getSize() {
         return new int[] {this.pontosX[0], this.pontosY[0],
-                          this.pontosX[1], this.pontosY[1],
-                          this.pontosX[2], this.pontosY[2]};
+                this.pontosX[1], this.pontosY[1],
+                this.pontosX[2], this.pontosY[2]};
     }
 
     @Override

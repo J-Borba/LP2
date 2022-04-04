@@ -71,7 +71,6 @@ public class Triangle extends Figura{
 
             triangulo.xpoints[2] -= dTamanho[0];
             triangulo.ypoints[2] -= dTamanho[0];
-
         }
         else
         {

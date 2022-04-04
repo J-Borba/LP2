@@ -9,6 +9,8 @@
 
     |R| - Criar um retangulo
 
+    |T| - Criar um triangulo
+
     |DEL| - Apagar a figura selecionada
 
     |F| - Mudar a cor da figura selecionada
@@ -29,4 +31,4 @@
 
                           -Qualquer lugar da figura: Mover
     |SEGURAR E ARRASTAR| |
-                          -Canto inferior direito: Redimensionar
+                          -Cantos: Redimensionar

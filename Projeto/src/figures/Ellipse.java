@@ -11,18 +11,18 @@ public class Ellipse extends Figura{
         super(x, y, contorno, fundo, false);
         this.w = w;
         this.h = h;
+        this.type = "Ellipse";
     }
 
     @Override
     public int[] getPosition() {
-        int[] coordenadas = {this.x, this.y};
-        return coordenadas;
+        return new int[]{this.xPoints[0], this.yPoints[0]};
     }
 
     @Override
     public void setPosition(int[] coordenada) {
-        this.x += coordenada[0];
-        this.y += coordenada[1];
+        this.xPoints[0] += coordenada[0];
+        this.yPoints[0] += coordenada[1];
     }
 
     @Override
@@ -39,7 +39,8 @@ public class Ellipse extends Figura{
 
     @Override
     public boolean pressed(int[] coordenada) {
-        return coordenada[0] >= this.x && coordenada[0] <= (this.x + this.w) && coordenada[1] >= this.y && coordenada[1] <= (this.y + this.h);
+        return coordenada[0] >= this.xPoints[0] && coordenada[0] <= (this.xPoints[0] + this.w) &&
+               coordenada[1] >= this.yPoints[0] && coordenada[1] <= (this.yPoints[0] + this.h);
     }
 
     @Override
@@ -48,64 +49,64 @@ public class Ellipse extends Figura{
         {
             this.w += dTamanho[0]*2;
             this.h += dTamanho[0]*2;
-            this.x -= dTamanho[0];
-            this.y -= dTamanho[0];
+            this.xPoints[0] -= dTamanho[0];
+            this.yPoints[0] -= dTamanho[0];
 
             if(this.w <= 10 || this.h <= 10)
             {
                 this.w -= dTamanho[0]*2;
-                this.x += dTamanho[0];
+                this.xPoints[0] += dTamanho[0];
 
                 this.h -= dTamanho[0]*2;
-                this.y += dTamanho[0];
+                this.yPoints[0] += dTamanho[0];
             }
         }
 
         else if(dTamanho[2] == 4) //W
         {
             this.w += dTamanho[0]*2;
-            this.x -= dTamanho[0];
+            this.xPoints[0] -= dTamanho[0];
 
             if(this.w <= 10)
             {
                 this.w -= dTamanho[0]*2;
-                this.x += dTamanho[0];
+                this.xPoints[0] += dTamanho[0];
             }
         }
 
         else if(dTamanho[2] == 3) // E
         {
             this.w -= dTamanho[0]*2;
-            this.x += dTamanho[0];
+            this.xPoints[0] += dTamanho[0];
 
             if(this.w <= 10)
             {
                 this.w += dTamanho[0]*2;
-                this.x -= dTamanho[0];
+                this.xPoints[0] -= dTamanho[0];
             }
         }
 
         else if(dTamanho[2] == 2) //S
         {
             this.h += dTamanho[1]*2;
-            this.y -= dTamanho[1];
+            this.yPoints[0] -= dTamanho[1];
 
             if(this.h <= 10)
             {
                 this.h -= dTamanho[1]*2;
-                this.y += dTamanho[1];
+                this.yPoints[0] += dTamanho[1];
             }
         }
 
         else if(dTamanho[2] == 1) //N
         {
             this.h -= dTamanho[1]*2;
-            this.y += dTamanho[1];
+            this.yPoints[0] += dTamanho[1];
 
             if(this.h <= 10)
             {
                 this.h += dTamanho[1]*2;
-                this.y -= dTamanho[1];
+                this.yPoints[0] -= dTamanho[1];
             }
         }
     }
@@ -120,20 +121,20 @@ public class Ellipse extends Figura{
 
         //desenhando fundo
         g2d.setColor(this.fundo);
-        g2d.fill(new Ellipse2D.Double(this.x, this.y, this.w, this.h));
+        g2d.fill(new Ellipse2D.Double(this.xPoints[0], this.yPoints[0], this.w, this.h));
 
         //desenhando contorno
         g2d.setColor(this.contorno);
         g2d.setStroke(new BasicStroke(3));
-        g2d.draw(new Ellipse2D.Double(this.x, this.y, this.w, this.h));
+        g2d.draw(new Ellipse2D.Double(this.xPoints[0], this.yPoints[0], this.w, this.h));
 
         if(this.getFocus()){
             g2d.setColor(Color.red);
             g2d.setStroke(new BasicStroke(1));
-            g2d.draw(new Ellipse2D.Double(this.x-2, this.y-2, this.w+4, this.h+4));
+            g2d.draw(new Ellipse2D.Double(this.xPoints[0]-2, this.yPoints[0]-2, this.w+4, this.h+4));
             g2d.setColor(this.fundo);
             g2d.setStroke(new BasicStroke(0.5F));
-            g2d.draw(new Rectangle(this.x-2, this.y-2, this.w+4, this.h+4));
+            g2d.draw(new Rectangle(this.xPoints[0]-2, this.yPoints[0]-2, this.w+4, this.h+4));
         }
     }
 }

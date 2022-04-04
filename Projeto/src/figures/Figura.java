@@ -3,14 +3,19 @@ package figures;
 import java.awt.*;
 
 public abstract class Figura {
-    protected int x, y;
+
+    protected int[] xPoints = new int[] {0};
+    protected int[] yPoints = new int[] {0};
+
     private boolean focus;
+
+    protected String type;
 
     Color contorno, fundo;
 
     public Figura(int x, int y, Color contorno, Color fundo, boolean focus){
-        this.x = x;
-        this.y = y;
+        this.xPoints[0] = x;
+        this.yPoints[0] = y;
 
         this.contorno = contorno;
         this.fundo = fundo;
@@ -29,6 +34,8 @@ public abstract class Figura {
     public abstract int[] getSize();
 
     public abstract void resize(int[] dTamanho);
+
+    public String getType(){return type;}
 
     public boolean getFocus(){return focus;}
 

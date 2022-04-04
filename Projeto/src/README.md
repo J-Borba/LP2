@@ -11,6 +11,8 @@
 
     |T| - Criar um triangulo
 
+    |L| - Criar um losango
+
     |DEL| - Apagar a figura selecionada
 
     |F| - Mudar a cor da figura selecionada

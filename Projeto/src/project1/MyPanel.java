@@ -517,22 +517,34 @@ public class MyPanel extends JPanel
                 Instruções de Uso:
                 (Aperte H para abrir esta janela a qualquer momento)
                 
-                Pressionar as teclas:
+                COMANDOS COM TECLADO: 
                 
-                    "E" para criar uma elipse
+                    |E| para criar uma elipse
                 
-                    "R" para criar um retangulo
+                    |R| para criar um retangulo
+                    
+                    |T| para criar um triangulo
+                    
+                    |L| para criar um losango
+                    
+                    |DEL| para deletar a figura selecionada
                 
-                    "DELETE" para deletar a figura selecionada
+                    |B| para mudar a cor da tela toda
                 
-                    "F" para mudar a cor de fundo da figura selecionada
-                     
-                    "B" para mudar a a cor da tela toda
+                    |C| para mudar a cor da figura selecionada
+                    
+                    |SETAS| para movimentar a figura
                 
-                    "C" para mudar a cor de contorno da figura selecionada
-                
-                    "Pressione e arraste a borda inferior direita da figura ou segure SHIFT e use as setas do teclado" para mudar o tamanho da figura selecionada
-                
+                    COMANDOS COM MOUSE: 
+                    
+                    Pressione e arraste na borda da figura para redimensiona-la
+                    
+                    Pressione e arraste na figura para move-la
+                    
+                    Pressione com o botao direito em uma figura para mudar sua cor
+                    
+                    Pressione com o botao direito no background para mudar sua cor
+                    
                     OBS: PARA SELECIONAR UMA FIGURA, BASTA CLICAR COM O MOUSE EM CIMA DELA""");
                 }
 

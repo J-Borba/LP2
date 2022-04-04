@@ -51,7 +51,7 @@ public class Ellipse extends Figura{
             this.x -= dTamanho[0];
             this.y -= dTamanho[0];
 
-            if(this.w <= 10)
+            if(this.w <= 10 || this.h <= 10)
             {
                 this.w -= dTamanho[0]*2;
                 this.x += dTamanho[0];
@@ -92,8 +92,8 @@ public class Ellipse extends Figura{
 
             if(this.h <= 10)
             {
-                this.h -= dTamanho[0]*2;
-                this.y += dTamanho[0];
+                this.h -= dTamanho[1]*2;
+                this.y += dTamanho[1];
             }
         }
 
@@ -104,8 +104,8 @@ public class Ellipse extends Figura{
 
             if(this.h <= 10)
             {
-                this.h += dTamanho[0]*2;
-                this.y -= dTamanho[0];
+                this.h += dTamanho[1]*2;
+                this.y -= dTamanho[1];
             }
         }
     }

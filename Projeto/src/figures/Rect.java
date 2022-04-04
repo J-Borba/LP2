@@ -14,8 +14,7 @@ public class Rect extends Figura{
 
     @Override
     public int[] getPosition() {
-        int[] coordenadas = {this.x, this.y};
-        return coordenadas;
+        return new int[]{this.x, this.y};
     }
 
     @Override
@@ -26,8 +25,7 @@ public class Rect extends Figura{
 
     @Override
     public int[] getSize() {
-        int[] tamanho = {this.w, this.h};
-        return tamanho;
+        return new int[]{this.w, this.h};
     }
 
     @Override

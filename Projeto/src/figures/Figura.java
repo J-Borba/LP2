@@ -4,8 +4,8 @@ import java.awt.*;
 
 public abstract class Figura {
 
-    protected int[] xPoints = new int[] {0};
-    protected int[] yPoints = new int[] {0};
+    public int[] xPoints = new int[] {0};
+    public int[] yPoints = new int[] {0};
 
     private boolean focus;
 
@@ -23,13 +23,13 @@ public abstract class Figura {
         this.focus = focus;
     }
 
+    public abstract boolean corner(int[] coordenada);
+
     public abstract boolean pressed(int[] coordenada);
 
     public abstract int[] getPosition();
 
     public abstract void setPosition(int[] coordenada);
-
-    public abstract void setSize(int[] tamanho);
 
     public abstract int[] getSize();
 
@@ -38,14 +38,12 @@ public abstract class Figura {
     public String getType(){return type;}
 
     public boolean getFocus(){return focus;}
-
     public void setFocus(boolean foco){focus = foco;}
-    public Color getColorContorno(){return this.contorno;}
 
+    public Color getColorContorno(){return this.contorno;}
     public void setColorContorno(Color contorno){this.contorno = contorno;}
 
     public Color getColorFundo(){return this.fundo;}
-
     public void setColorFundo(Color fundo){this.fundo = fundo;}
 
     public abstract void paint(Graphics g);

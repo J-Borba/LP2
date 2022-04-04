@@ -32,9 +32,9 @@ public class Ellipse extends Figura{
     }
 
     @Override
-    public void setSize(int[] tamanho) {
-        this.w = tamanho[0];
-        this.h = tamanho[1];
+    public boolean corner(int[] coordenada) {
+        return coordenada[0] >= this.xPoints[0] + this.w-5 && coordenada[0] <= this.xPoints[0] + this.w &&
+                coordenada[1] >= this.yPoints[0] + this.h-5 && coordenada[1] <= this.yPoints[0] + this.h;
     }
 
     @Override
@@ -110,7 +110,6 @@ public class Ellipse extends Figura{
             }
         }
     }
-
     @Override
     public void paint(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;

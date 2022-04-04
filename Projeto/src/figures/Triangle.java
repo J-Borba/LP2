@@ -13,7 +13,6 @@ public class Triangle extends Figura{
         this.pontosX[0] = xPoints[0];
         this.pontosY[0] = yPoints[0];
 
-
         this.type = "Triang";
 
         this.pontosX[1] = x2;
@@ -29,13 +28,16 @@ public class Triangle extends Figura{
         triangulo.addPoint(pontosX[2], pontosY[2]);
 
     }
+
+    @Override
+    public boolean corner(int[] coordenada) {
+        return coordenada[0] >= triangulo.xpoints[2]-5 && coordenada[0] <= triangulo.xpoints[2] &&
+                coordenada[1] >= triangulo.ypoints[2]-5 && coordenada[1] <= triangulo.ypoints[2];
+    }
+
     @Override
     public boolean pressed(int[] coordenada) {
-        if(triangulo.contains(coordenada[0], coordenada[1]))
-        {
-            return true;
-        }
-        return false;
+        return triangulo.contains(coordenada[0], coordenada[1]);
     }
 
     @Override
@@ -47,26 +49,7 @@ public class Triangle extends Figura{
 
     @Override
     public void setPosition(int[] coordenada) {
-        this.pontosX[0] = coordenada[0];
-        this.pontosY[0] = coordenada[0];
-
-        this.pontosX[1] = coordenada[1];
-        this.pontosY[1] = coordenada[1];
-
-        this.pontosX[2] = coordenada[2];
-        this.pontosY[2] = coordenada[2];
-    }
-
-    @Override
-    public void setSize(int[] tamanho) {
-        this.pontosX[0] = tamanho[0];
-        this.pontosY[0] = tamanho[0];
-
-        this.pontosX[1] = tamanho[1];
-        this.pontosY[1] = tamanho[1];
-
-        this.pontosX[2] = tamanho[2];
-        this.pontosY[2] = tamanho[2];
+        triangulo.translate(coordenada[0], coordenada[1]);
     }
 
     @Override
@@ -78,14 +61,36 @@ public class Triangle extends Figura{
 
     @Override
     public void resize(int[] dTamanho) {
-        this.pontosX[0] += dTamanho[0];
-        this.pontosY[0] += dTamanho[0];
+        int[] newPointx, newPointy;
+        if(triangulo.xpoints[2] - triangulo.xpoints[0] <= 25)
+        {
+            triangulo.xpoints[0] += dTamanho[0];
+            triangulo.ypoints[0] -= dTamanho[0];
 
-        this.pontosX[1] += dTamanho[1];
-        this.pontosY[1] += dTamanho[1];
+            triangulo.ypoints[1] += dTamanho[0];
 
-        this.pontosX[2] += dTamanho[2];
-        this.pontosY[2] += dTamanho[2];
+            triangulo.xpoints[2] -= dTamanho[0];
+            triangulo.ypoints[2] -= dTamanho[0];
+
+        }
+        else
+        {
+            triangulo.xpoints[0] -= dTamanho[0];
+            triangulo.ypoints[0] += dTamanho[0];
+
+            triangulo.ypoints[1] -= dTamanho[0];
+
+            triangulo.xpoints[2] += dTamanho[0];
+            triangulo.ypoints[2] += dTamanho[0];
+        }
+
+        newPointx = triangulo.xpoints;
+        newPointy = triangulo.ypoints;
+        triangulo.reset();
+        triangulo.addPoint(newPointx[0], newPointy[0]);
+        triangulo.addPoint(newPointx[1], newPointy[1]);
+        triangulo.addPoint(newPointx[2], newPointy[2]);
+
     }
 
     @Override

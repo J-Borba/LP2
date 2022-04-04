@@ -36,7 +36,8 @@ public class Rect extends Figura{
 
     @Override
     public boolean pressed(int[] coordenada) {
-        return coordenada[0] >= this.x && coordenada[0] <= (this.x + this.w) && coordenada[1] >= this.y && coordenada[1] <= (this.y + this.h);
+        return coordenada[0] >= this.x && coordenada[0] <= (this.x + this.w) &&
+               coordenada[1] >= this.y && coordenada[1] <= (this.y + this.h);
     }
 
     @Override

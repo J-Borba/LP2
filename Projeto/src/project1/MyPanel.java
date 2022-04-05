@@ -238,7 +238,10 @@ public class MyPanel extends JPanel
             @Override
             public void mousePressed(MouseEvent e)
             {
-                figuraFoco = null;
+                if(e.getButton() == MouseEvent.BUTTON1)
+                {
+                    figuraFoco = null;
+                }
                 clickX = e.getX();
                 clickY = e.getY();
 

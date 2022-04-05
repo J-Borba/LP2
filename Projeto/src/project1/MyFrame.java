@@ -2,23 +2,18 @@ package project1;
 
 import javax.swing.*;
 
-import java.awt.*;
-
 import static java.awt.Toolkit.*;
-import static javax.swing.JOptionPane.showMessageDialog;
 
 public class MyFrame extends JFrame {
 
     //Criando um panel para o frame
     MyPanel panel;
-    //ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("icone.png"));
+
     ImageIcon icone = new ImageIcon(getDefaultToolkit().getImage(getClass().getResource("logo.png")));
 
     //Metodo construtor
     public MyFrame() {
         this.setIconImage(icone.getImage());
-
-        showMessageDialog(this, "Aperte H a qualquer momento para abrir a janela de comandos");
 
         //Inicializando o panel
         panel = new MyPanel();

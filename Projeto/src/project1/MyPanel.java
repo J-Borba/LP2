@@ -8,7 +8,6 @@ import java.awt.event.*;
 import java.util.ArrayList;
 
 import static java.awt.Toolkit.getDefaultToolkit;
-import static javax.swing.JOptionPane.showMessageDialog;
 
 import static java.awt.event.KeyEvent.*;
 import static javax.swing.JOptionPane.showOptionDialog;
@@ -514,43 +513,6 @@ public class MyPanel extends JPanel
                         }
                     }
                 }
-                if(e.getKeyChar() == 'h')
-                {
-                    showMessageDialog(MyPanel.this, """
-                Instruções de Uso:
-                (Aperte H para abrir esta janela a qualquer momento)
-                
-                COMANDOS COM TECLADO: 
-                
-                    |E| para criar uma elipse
-                
-                    |R| para criar um retangulo
-                    
-                    |T| para criar um triangulo
-                    
-                    |L| para criar um losango
-                    
-                    |DEL| para deletar a figura selecionada
-                
-                    |B| para mudar a cor da tela toda
-                
-                    |C| para mudar a cor da figura selecionada
-                    
-                    |SETAS| para movimentar a figura
-                
-                    COMANDOS COM MOUSE: 
-                    
-                    Pressione e arraste na borda da figura para redimensiona-la
-                    
-                    Pressione e arraste na figura para move-la
-                    
-                    Pressione com o botao direito em uma figura para mudar sua cor
-                    
-                    Pressione com o botao direito no background para mudar sua cor
-                    
-                    OBS: PARA SELECIONAR UMA FIGURA, BASTA CLICAR COM O MOUSE EM CIMA DELA""");
-                }
-
                 repaint();
             }
         });

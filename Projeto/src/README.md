@@ -1,7 +1,4 @@
-### Instruções de uso:
-
-    Aperte a tecla H para abrir a janela de ajuda
-    à qualquer momento durante a execução do programa
+## Instruções de uso:
 
 ### Mapeamento do teclado:
 

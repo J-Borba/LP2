@@ -33,7 +33,7 @@ public class MyPanel extends JPanel
     Cursor moveCur = new Cursor(Cursor.MOVE_CURSOR);
     Cursor handCur = new Cursor(Cursor.HAND_CURSOR);
 
-    int[] coordenada, tamanho, oldSize;
+    int[] coordenada, tamanho;
 
     int clickX, clickY, whereX, whereY;
 
@@ -392,7 +392,6 @@ public class MyPanel extends JPanel
                     }
                 }
 
-                repaint();
                 for (Figura figure : figures)
                 {
                     figure.setFocus(false);
@@ -401,14 +400,12 @@ public class MyPanel extends JPanel
                     if (figure.pressed(coordenada))
                     {
                         figuraFoco = figure;
-                        oldSize = figuraFoco.getSize();
 
                         if(e.getButton() == MouseEvent.BUTTON1)
                         {
                             Cursor curCursor = MyPanel.super.getCursor();
 
-                            if(curCursor != seResizeCur && curCursor != nResizeCur && curCursor != sResizeCur &&
-                               curCursor != eResizeCur && curCursor != wResizeCur)
+                            if(curCursor == defaultCur || curCursor == handCur)
                             {
                                 MyPanel.super.setCursor(moveCur);
                             }
@@ -460,6 +457,7 @@ public class MyPanel extends JPanel
                             figures.add(figuraFoco);
                         }
                     }
+                    repaint();
                 }
             }
         });
@@ -495,6 +493,10 @@ public class MyPanel extends JPanel
                     {
                         figures.remove(figuraFoco);
                         focusChangeList.remove((figuraFoco));
+
+                        figuraFoco = null;
+                        figuraMouse = null;
+                        repaint();
                     }
 
 
@@ -528,7 +530,14 @@ public class MyPanel extends JPanel
                                 figure.setFocus(false);
                             }
 
-                            figuraFoco = focusChangeList.get(cont);
+                            if(focusChangeList.size() == 1)
+                            {
+                                figuraFoco = focusChangeList.get(0);
+                            }
+                            else
+                            {
+                                figuraFoco = focusChangeList.get(cont);
+                            }
 
                             for(int j=0; j < figures.size(); j++)
                             {
@@ -540,7 +549,7 @@ public class MyPanel extends JPanel
                                 }
                             }
                             repaint();
-                            if(cont == focusChangeList.size()-1)
+                            if(cont >= focusChangeList.size()-1)
                             {
                                 cont = 0;
                             }

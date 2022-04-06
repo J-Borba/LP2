@@ -246,8 +246,141 @@ public class MyPanel extends JPanel
                 {
                     figuraFoco = null;
                 }
+
                 clickX = e.getX();
                 clickY = e.getY();
+
+                if(e.getButton() == MouseEvent.BUTTON1 && e.isAltDown())
+                {
+                    Object[] options = {"Ellipse", "Retangulo", "Triangulo", "Losango"};
+
+                    int escolha = showOptionDialog(null, "Deseja criar qual figura?", "Criando Figuras!", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, icone, options, options[0]);
+
+                    if (escolha == 0)
+                    {
+                        for (Figura figure : figures)
+                        {
+                            figure.setFocus(false);
+                        }
+                        repaint();
+                        figuraFoco =  new Ellipse(whereX - 50,
+                                whereY - 50,
+                                100,
+                                100,
+                                Color.black,
+                                Color.gray);
+
+                        figures.add(figuraFoco);
+
+                        focusChangeList.add(figuraFoco);
+
+                        for(int j=0; j < figures.size(); j++)
+                        {
+                            if(figuraFoco == figures.get(j))
+                            {
+                                figures.get(j).setFocus(true);
+                                figures.remove(figures.get(j));
+                                figures.add(figuraFoco);
+                            }
+                        }
+                        repaint();
+                    }
+                    else if (escolha == 1)
+                    {
+                        for (Figura figure : figures)
+                        {
+                            figure.setFocus(false);
+                        }
+                        repaint();
+                        figuraFoco =  new Rect(whereX - 50,
+                                whereY - 50,
+                                100,
+                                100,
+                                Color.black,
+                                Color.gray);
+
+                        figures.add(figuraFoco);
+
+                        focusChangeList.add(figuraFoco);
+
+                        for(int j=0; j < figures.size(); j++)
+                        {
+                            if(figuraFoco == figures.get(j))
+                            {
+                                figures.get(j).setFocus(true);
+                                figures.remove(figures.get(j));
+                                figures.add(figuraFoco);
+                            }
+                        }
+                        repaint();
+                    }
+                    else if(escolha == 2)
+                    {
+                        for (Figura figure : figures)
+                        {
+                            figure.setFocus(false);
+                        }
+                        repaint();
+                        figuraFoco =  new Triangle(
+                                whereX-50,
+                                whereY+50,
+                                whereX,
+                                whereY-75,
+                                whereX+50,
+                                whereY+50,
+                                Color.black,
+                                Color.gray);
+
+                        figures.add(figuraFoco);
+
+                        focusChangeList.add(figuraFoco);
+
+                        for(int j=0; j < figures.size(); j++)
+                        {
+                            if(figuraFoco == figures.get(j))
+                            {
+                                figures.get(j).setFocus(true);
+                                figures.remove(figures.get(j));
+                                figures.add(figuraFoco);
+                            }
+                        }
+                        repaint();
+                    }
+                    else if(escolha == 3)
+                    {
+                        for (Figura figure : figures)
+                        {
+                            figure.setFocus(false);
+                        }
+                        repaint();
+                        figuraFoco =  new Losango(
+                                whereX-50,
+                                whereY+50,
+                                whereX,
+                                whereY-50,
+                                whereX+50,
+                                whereY+50,
+                                whereX,
+                                whereY+150,
+                                Color.black,
+                                Color.gray);
+
+                        figures.add(figuraFoco);
+
+                        focusChangeList.add(figuraFoco);
+
+                        for(int j=0; j < figures.size(); j++)
+                        {
+                            if(figuraFoco == figures.get(j))
+                            {
+                                figures.get(j).setFocus(true);
+                                figures.remove(figures.get(j));
+                                figures.add(figuraFoco);
+                            }
+                        }
+                        repaint();
+                    }
+                }
 
                 repaint();
                 for (Figura figure : figures)
@@ -287,8 +420,6 @@ public class MyPanel extends JPanel
                                 Color cor = JColorChooser.showDialog(null, "Seletor de cores!", figuraFoco.getColorContorno());
                                 figuraFoco.setColorContorno(cor);
                             }
-
-
                         }
                     }
                     repaint();
@@ -367,7 +498,7 @@ public class MyPanel extends JPanel
                     }
 
 
-                    else if(e.getKeyChar() == 'c')
+                    else if(e.getKeyChar() == 'c' || e.getKeyChar() == 'C')
                     {
                         Object[] options = {"Fundo", "Contorno"};
                         int escolha = showOptionDialog(null, "Deseja trocar a cor de qual parte da figura?", "Troca de cor", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, icone, options, options[0]);
@@ -420,7 +551,7 @@ public class MyPanel extends JPanel
                         }
                     }
                 }
-                if(e.getKeyChar() == 'r')
+                if(e.getKeyChar() == 'r' || e.getKeyChar() == 'R')
                 {
                     for (Figura figure : figures)
                     {
@@ -450,7 +581,7 @@ public class MyPanel extends JPanel
                     repaint();
                 }
 
-                else if(e.getKeyChar() == 'e')
+                else if(e.getKeyChar() == 'e' || e.getKeyChar() == 'E')
                 {
                     for (Figura figure : figures)
                     {
@@ -482,7 +613,7 @@ public class MyPanel extends JPanel
                     repaint();
                 }
 
-                else if(e.getKeyChar() == 't')
+                else if(e.getKeyChar() == 't' || e.getKeyChar() == 'T')
                 {
                     for (Figura figure : figures)
                     {
@@ -514,7 +645,7 @@ public class MyPanel extends JPanel
                     }
                     repaint();
                 }
-                else if(e.getKeyChar() == 'l')
+                else if(e.getKeyChar() == 'l' || e.getKeyChar() == 'L')
                 {
                     for (Figura figure : figures)
                     {
@@ -551,7 +682,7 @@ public class MyPanel extends JPanel
 
                 else
                 {
-                    if(e.getKeyChar() == 'b')
+                    if(e.getKeyChar() == 'b' || e.getKeyChar() == 'B')
                     {
                         Object[] options = {"Sim", "Nao"};
 

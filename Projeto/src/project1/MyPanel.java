@@ -218,6 +218,7 @@ public class MyPanel extends JPanel
                             figuraFoco.setPosition(new int[] {e.getX()-clickX, e.getY()-clickY});
                         }
                     }
+                    
                     else if(figuraFoco.getType().equals("Triang") || figuraFoco.getType().equals("Losang"))
                     {
                         if(MyPanel.super.getCursor() == moveCur)

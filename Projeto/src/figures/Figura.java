@@ -1,8 +1,10 @@
 package figures;
 
+import ivisible.IVisible;
+
 import java.awt.*;
 
-public abstract class Figura {
+public abstract class Figura implements IVisible {
 
     public int[] xPoints = new int[] {0};
     public int[] yPoints = new int[] {0};
@@ -25,8 +27,6 @@ public abstract class Figura {
 
     public abstract boolean corner(int[] coordenada);
 
-    public abstract boolean pressed(int[] coordenada);
-
     public abstract int[] getPosition();
 
     public abstract void setPosition(int[] coordenada);
@@ -45,6 +45,4 @@ public abstract class Figura {
 
     public Color getColorFundo(){return this.fundo;}
     public void setColorFundo(Color fundo){this.fundo = fundo;}
-
-    public abstract void paint(Graphics g);
 }

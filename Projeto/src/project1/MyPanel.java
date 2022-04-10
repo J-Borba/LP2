@@ -1,8 +1,7 @@
 package project1;
 
+import buttons.*;
 import buttons.Button;
-import buttons.EllipseBtn;
-import buttons.RectBtn;
 import figures.*;
 
 import javax.swing.*;
@@ -50,6 +49,8 @@ public class MyPanel extends JPanel
     {
         buttons.add(new RectBtn(10, 30, 50, 50));
         buttons.add(new EllipseBtn(10, 90, 50, 50));
+        buttons.add(new TriangBtn(10, 150, 50, 50));
+        buttons.add(new LosangBtn(10, 210, 50, 50));
 
         this.addMouseMotionListener(new MouseMotionAdapter()
         {
@@ -316,8 +317,8 @@ public class MyPanel extends JPanel
 
                             else if(button.getType() == 3) //Losang
                             {
-                                int PanelWidht = MyPanel.super.getWidth();
-                                int PanelHeight = MyPanel.super.getHeight();
+                                int PanelWidht = MyPanel.super.getWidth()/2;
+                                int PanelHeight = MyPanel.super.getHeight()/2;
 
                                 figuraFoco =  new Losango(
                                         PanelWidht-50,
@@ -455,7 +456,7 @@ public class MyPanel extends JPanel
                         figuraFoco.setPosition(new int[]{10, 0});
                     }
 
-                    else if(e.getKeyCode() == VK_DELETE)
+                    else if(e.getKeyCode() == VK_DELETE || e.getKeyCode() == VK_BACK_SPACE)
                     {
                         figures.remove(figuraFoco);
                         focusChangeList.remove((figuraFoco));

@@ -262,146 +262,6 @@ public class MyPanel extends JPanel
                 clickX = e.getX();
                 clickY = e.getY();
 
-                if(e.getButton() == MouseEvent.BUTTON1 && e.isAltDown())
-                {
-                    Object[] options = {"Ellipse", "Retangulo", "Triangulo", "Losango"};
-
-                    int escolha = showOptionDialog(null, "Deseja criar qual figura?", "Criando Figuras!", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, icone, options, options[0]);
-
-                    if (escolha == 0)
-                    {
-                        figuraFoco = null;
-
-                        for (Figura figure : figures)
-                        {
-                            figure.setFocus(false);
-                        }
-                        repaint();
-                        figuraFoco =  new Ellipse(whereX - 50,
-                                whereY - 50,
-                                100,
-                                100,
-                                Color.black,
-                                Color.gray);
-
-                        figures.add(figuraFoco);
-
-                        focusChangeList.add(figuraFoco);
-
-                        for(int j=0; j < figures.size(); j++)
-                        {
-                            if(figuraFoco == figures.get(j))
-                            {
-                                figures.get(j).setFocus(true);
-                                figures.remove(figures.get(j));
-                                figures.add(figuraFoco);
-                            }
-                        }
-                        repaint();
-                    }
-                    else if (escolha == 1)
-                    {
-                        figuraFoco = null;
-
-                        for (Figura figure : figures)
-                        {
-                            figure.setFocus(false);
-                        }
-                        repaint();
-                        figuraFoco =  new Rect(whereX - 50,
-                                whereY - 50,
-                                100,
-                                100,
-                                Color.black,
-                                Color.gray);
-
-                        figures.add(figuraFoco);
-
-                        focusChangeList.add(figuraFoco);
-
-                        for(int j=0; j < figures.size(); j++)
-                        {
-                            if(figuraFoco == figures.get(j))
-                            {
-                                figures.get(j).setFocus(true);
-                                figures.remove(figures.get(j));
-                                figures.add(figuraFoco);
-                            }
-                        }
-                        repaint();
-                    }
-                    else if(escolha == 2)
-                    {
-                        figuraFoco = null;
-
-                        for (Figura figure : figures)
-                        {
-                            figure.setFocus(false);
-                        }
-                        repaint();
-                        figuraFoco =  new Triangle(
-                                whereX-50,
-                                whereY+50,
-                                whereX,
-                                whereY-75,
-                                whereX+50,
-                                whereY+50,
-                                Color.black,
-                                Color.gray);
-
-                        figures.add(figuraFoco);
-
-                        focusChangeList.add(figuraFoco);
-
-                        for(int j=0; j < figures.size(); j++)
-                        {
-                            if(figuraFoco == figures.get(j))
-                            {
-                                figures.get(j).setFocus(true);
-                                figures.remove(figures.get(j));
-                                figures.add(figuraFoco);
-                            }
-                        }
-                        repaint();
-                    }
-                    else if(escolha == 3)
-                    {
-                        figuraFoco = null;
-
-                        for (Figura figure : figures)
-                        {
-                            figure.setFocus(false);
-                        }
-                        repaint();
-                        figuraFoco =  new Losango(
-                                whereX-50,
-                                whereY+50,
-                                whereX,
-                                whereY-50,
-                                whereX+50,
-                                whereY+50,
-                                whereX,
-                                whereY+150,
-                                Color.black,
-                                Color.gray);
-
-                        figures.add(figuraFoco);
-
-                        focusChangeList.add(figuraFoco);
-
-                        for(int j=0; j < figures.size(); j++)
-                        {
-                            if(figuraFoco == figures.get(j))
-                            {
-                                figures.get(j).setFocus(true);
-                                figures.remove(figures.get(j));
-                                figures.add(figuraFoco);
-                            }
-                        }
-                        repaint();
-                    }
-                }
-
                 for(Button button : buttons)
                 {
                     coordenada = new int[]{e.getX(), e.getY()};
@@ -410,6 +270,7 @@ public class MyPanel extends JPanel
                     {
                         if(e.getButton() == MouseEvent.BUTTON1)
                         {
+                            button.setColor(new Color(100, 100, 100));
                             for (Figura figure : figures) {
                                 figure.setFocus(false);
                             }
@@ -557,8 +418,16 @@ public class MyPanel extends JPanel
                     repaint();
                 }
             }
-        });
 
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                super.mouseReleased(e);
+                for(Button button : buttons) {
+                    button.setColor(new Color(210, 210, 210));
+                }
+                repaint();
+            }
+        });
         this.addKeyListener(new KeyAdapter()
         {
             @Override

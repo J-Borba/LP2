@@ -6,7 +6,10 @@ public class RectBtn extends Button {
 
     public RectBtn(int x, int y, int w, int h) {
         super(x, y, w, h);
+
         this.Type = 0;
+
+        this.setColor(new Color(210, 210, 210));
     }
 
     @Override
@@ -18,7 +21,7 @@ public class RectBtn extends Button {
 
         g2d.setStroke(new BasicStroke(2));
 
-        g2d.setColor(new Color(210, 210, 210));
+        g2d.setColor(fundo);
         g2d.fillRoundRect(x, y, w, h, 25, 25);
 
         g2d.setColor(new Color(160, 160, 160));

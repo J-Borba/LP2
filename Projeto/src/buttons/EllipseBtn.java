@@ -4,21 +4,13 @@ import java.awt.*;
 import java.awt.geom.Ellipse2D;
 
 public class EllipseBtn extends Button {
-    double dx;
-    double dy;
-    double dw;
-    double dh;
 
     public EllipseBtn(int x, int y, int w, int h) {
         super(x, y, w, h);
 
-        dx = (double) x;
-        dy = (double) y;
-        dw = (double) w;
-        dh = (double) h;
-
-
         this.Type = 1;
+
+        this.setColor(new Color(210, 210, 210));
     }
 
     @Override
@@ -30,16 +22,16 @@ public class EllipseBtn extends Button {
 
         g2d.setStroke(new BasicStroke(2));
 
-        g2d.setColor(new Color(210, 210, 210));
+        g2d.setColor(fundo);
         g2d.fillRoundRect(x, y, w, h, 25, 25);
 
         g2d.setColor(new Color(160, 160, 160));
         g2d.drawRoundRect(x, y, w, h, 25, 25);
 
         g2d.setColor(Color.black);
-        g2d.draw(new Ellipse2D.Double(x+dw/4, y+dh/4, dw/2, dh/2));
+        g2d.draw(new Ellipse2D.Double(x+w/4.0 , y+h/4.0, w/2.0, h/2.0));
 
         g2d.setColor(Color.white);
-        g2d.fill(new Ellipse2D.Double(x+dw/4+2, y+dh/4+2, dw/2-3.5, dh/2-3.5));
+        g2d.fill(new Ellipse2D.Double(x+w/4.0+2, y+h/4.0+2, w/2.0-3.5, h/2.0-3.5));
     }
 }

@@ -6,6 +6,7 @@ import java.awt.*;
 
 public abstract class Button implements IVisible {
     protected int x, y, w, h, Type;
+    protected Color fundo;
 
     public Button(int x, int y, int w, int h)
     {
@@ -14,6 +15,8 @@ public abstract class Button implements IVisible {
         this.w = w;
         this.h = h;
     }
+
+    public void setColor(Color cor){fundo = cor;}
 
     public int getType(){return Type;}
 

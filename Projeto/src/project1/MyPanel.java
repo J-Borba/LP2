@@ -322,13 +322,13 @@ public class MyPanel extends JPanel
 
                                 figuraFoco =  new Losango(
                                         PanelWidht-50,
-                                        PanelHeight+50,
+                                        PanelHeight,
                                         PanelWidht,
-                                        PanelHeight-50,
+                                        PanelHeight-100,
                                         PanelWidht+50,
-                                        PanelHeight+50,
+                                        PanelHeight,
                                         PanelWidht,
-                                        PanelHeight+150,
+                                        PanelHeight+100,
                                         Color.black,
                                         Color.gray);
 

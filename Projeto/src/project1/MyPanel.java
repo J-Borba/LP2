@@ -51,6 +51,8 @@ public class MyPanel extends JPanel
         buttons.add(new EllipseBtn(10, 90, 50, 50));
         buttons.add(new TriangBtn(10, 150, 50, 50));
         buttons.add(new LosangBtn(10, 210, 50, 50));
+        buttons.add(new ColorBtn(10, 270, 50, 50));
+        buttons.add(new EraseBtn(10, 330, 50, 50));
 
         this.addMouseMotionListener(new MouseMotionAdapter()
         {
@@ -70,10 +72,12 @@ public class MyPanel extends JPanel
                 }
 
                 for (Figura figura : figures) {
-                    if(figura.pressed(new int[]{whereX, whereY}))
-                    {
-                        figuraMouse = figura;
-                        botaoMouse = null;
+                    if(figura != null){
+                        if(figura.pressed(new int[]{whereX, whereY}))
+                        {
+                            figuraMouse = figura;
+                            botaoMouse = null;
+                        }
                     }
                 }
 
@@ -92,9 +96,7 @@ public class MyPanel extends JPanel
                 {
 
                     switch (figuraMouse.getType()) {
-                        case "Rect":
-
-                        case "Ellipse":
+                        case "Rect", "Ellipse", "Losang", "Triang" -> {
 
                             coordenada = figuraMouse.getPosition();
                             tamanho = figuraMouse.getSize();
@@ -104,86 +106,32 @@ public class MyPanel extends JPanel
                                 MyPanel.super.setCursor(seResizeCur);
                             }
                             else if (whereX >= coordenada[0] && whereX <= coordenada[0] + tamanho[0] &&
-                                     whereY >= coordenada[1] && whereY <= coordenada[1] + 5)
+                                    whereY >= coordenada[1] && whereY <= coordenada[1] + 5)
                             {
                                 MyPanel.super.setCursor(nResizeCur);
                             }
                             else if (whereX >= coordenada[0] && whereX <= coordenada[0] + tamanho[0] &&
-                                     whereY >= coordenada[1] + tamanho[1] - 5 && whereY <= coordenada[1] + tamanho[1])
-                            {
+                                    whereY >= coordenada[1] + tamanho[1] - 5 && whereY <= coordenada[1] + tamanho[1]) {
                                 MyPanel.super.setCursor(sResizeCur);
                             }
                             else if (whereX >= coordenada[0] && whereX <= coordenada[0] + 5 &&
-                                     whereY >= coordenada[1] && whereY <= coordenada[1] + tamanho[1])
-                            {
+                                    whereY >= coordenada[1] && whereY <= coordenada[1] + tamanho[1]) {
                                 MyPanel.super.setCursor(eResizeCur);
                             }
                             else if (whereX >= coordenada[0] + tamanho[0] - 5 && whereX <= coordenada[0] + tamanho[0] &&
-                                     whereY >= coordenada[1] && whereY <= coordenada[1] + tamanho[1])
-                            {
+                                    whereY >= coordenada[1] && whereY <= coordenada[1] + tamanho[1]) {
                                 MyPanel.super.setCursor(wResizeCur);
                             }
-                            else if (figuraMouse.pressed(new int[]{whereX, whereY}))
-                            {
+                            else if (figuraMouse.pressed(new int[]{whereX, whereY})) {
                                 if (figuraMouse == figuraFoco) {
                                     MyPanel.super.setCursor(moveCur);
-                                }
-                                else
-                                {
+                                } else {
                                     MyPanel.super.setCursor(handCur);
                                 }
-                            }
-                            else
-                            {
+                            } else {
                                 MyPanel.super.setCursor(defaultCur);
                             }
-
-                            break;
-                        case "Triang":
-
-                            if (figuraMouse.corner(new int[]{whereX, whereY}))
-                            {
-                                MyPanel.super.setCursor(seResizeCur);
-                            }
-                            else if (figuraMouse.pressed(new int[]{whereX, whereY}))
-                            {
-                                if (figuraMouse == figuraFoco)
-                                {
-                                    MyPanel.super.setCursor(moveCur);
-                                }
-                                else
-                                {
-                                    MyPanel.super.setCursor(handCur);
-                                }
-                            }
-                            else
-                            {
-                                MyPanel.super.setCursor(defaultCur);
-                            }
-
-                            break;
-
-                        case "Losang":
-
-                            if (figuraMouse.corner(new int[]{whereX, whereY}))
-                            {
-                                MyPanel.super.setCursor(sResizeCur);
-                            }
-                            else if (figuraMouse.pressed(new int[]{whereX, whereY})) {
-                                if (figuraMouse == figuraFoco)
-                                {
-                                    MyPanel.super.setCursor(moveCur);
-                                }
-                                else
-                                {
-                                    MyPanel.super.setCursor(handCur);
-                                }
-                            }
-                            else
-                            {
-                                MyPanel.super.setCursor(defaultCur);
-                            }
-                            break;
+                        }
                     }
                 }
                 else
@@ -197,49 +145,34 @@ public class MyPanel extends JPanel
             {
                 if(figuraFoco != null){
 
-                    if(figuraFoco.getType().equals("Rect") || figuraFoco.getType().equals("Ellipse"))
+                    if(MyPanel.super.getCursor() == seResizeCur)
                     {
-                        if(MyPanel.super.getCursor() == seResizeCur)
-                        {
-                            figuraFoco.resize(new int[]{e.getX()-clickX, e.getY()-clickY, 5});
-                        }
-
-                        else if(MyPanel.super.getCursor() == nResizeCur)
-                        {
-                            figuraFoco.resize(new int[]{e.getX()-clickX, e.getY()-clickY, 1});
-                        }
-
-                        else if(MyPanel.super.getCursor() == sResizeCur)
-                        {
-                            figuraFoco.resize(new int[]{e.getX()-clickX, e.getY()-clickY, 2});
-                        }
-
-                        else if(MyPanel.super.getCursor() == eResizeCur)
-                        {
-                            figuraFoco.resize(new int[]{e.getX()-clickX, e.getY()-clickY, 3});
-                        }
-
-                        else if(MyPanel.super.getCursor() == wResizeCur)
-                        {
-                            figuraFoco.resize(new int[]{e.getX()-clickX, e.getY()-clickY, 4});
-                        }
-
-                        else if (MyPanel.super.getCursor() == moveCur)
-                        {
-                            figuraFoco.setPosition(new int[] {e.getX()-clickX, e.getY()-clickY});
-                        }
+                        figuraFoco.resize(new int[]{e.getX()-clickX, e.getY()-clickY, 5});
                     }
-                    
-                    else if(figuraFoco.getType().equals("Triang") || figuraFoco.getType().equals("Losang"))
+
+                    else if(MyPanel.super.getCursor() == nResizeCur)
                     {
-                        if(MyPanel.super.getCursor() == moveCur)
-                        {
-                            figuraFoco.setPosition(new int[] {e.getX()-clickX, e.getY()-clickY});
-                        }
-                        else if(MyPanel.super.getCursor() == seResizeCur || MyPanel.super.getCursor() == sResizeCur)
-                        {
-                            figuraFoco.resize(new int[] {e.getX()-clickX, e.getY()-clickY});
-                        }
+                        figuraFoco.resize(new int[]{e.getX()-clickX, e.getY()-clickY, 1});
+                    }
+
+                    else if(MyPanel.super.getCursor() == sResizeCur)
+                    {
+                        figuraFoco.resize(new int[]{e.getX()-clickX, e.getY()-clickY, 2});
+                    }
+
+                    else if(MyPanel.super.getCursor() == eResizeCur)
+                    {
+                        figuraFoco.resize(new int[]{e.getX()-clickX, e.getY()-clickY, 3});
+                    }
+
+                    else if(MyPanel.super.getCursor() == wResizeCur)
+                    {
+                        figuraFoco.resize(new int[]{e.getX()-clickX, e.getY()-clickY, 4});
+                    }
+
+                    else if (MyPanel.super.getCursor() == moveCur)
+                    {
+                        figuraFoco.setPosition(new int[] {e.getX()-clickX, e.getY()-clickY});
                     }
                     repaint();
                     clickX = e.getX();
@@ -254,10 +187,13 @@ public class MyPanel extends JPanel
             public void mousePressed(MouseEvent e)
             {
                 cont = 0;
-                if(e.getButton() == MouseEvent.BUTTON1 || e.getButton() == MouseEvent.BUTTON3)
+                if(botaoMouse == null)
                 {
-                    figuraFoco = null;
-                    repaint();
+                    if(e.getButton() == MouseEvent.BUTTON1 || e.getButton() == MouseEvent.BUTTON3)
+                    {
+                        figuraFoco = null;
+                        repaint();
+                    }
                 }
 
                 clickX = e.getX();
@@ -287,6 +223,21 @@ public class MyPanel extends JPanel
                                         100,
                                         Color.black,
                                         Color.gray);
+
+                                figures.add(figuraFoco);
+
+                                focusChangeList.add(figuraFoco);
+
+                                for(int j=0; j < figures.size(); j++)
+                                {
+                                    if(figuraFoco == figures.get(j))
+                                    {
+                                        figures.get(j).setFocus(true);
+                                        figures.remove(figures.get(j));
+                                        figures.add(figuraFoco);
+                                    }
+                                }
+                                repaint();
                             }
 
                             else if(button.getType() == 1) //Ellipse
@@ -297,59 +248,109 @@ public class MyPanel extends JPanel
                                         100,
                                         Color.black,
                                         Color.gray);
+
+                                figures.add(figuraFoco);
+
+                                focusChangeList.add(figuraFoco);
+
+                                for(int j=0; j < figures.size(); j++)
+                                {
+                                    if(figuraFoco == figures.get(j))
+                                    {
+                                        figures.get(j).setFocus(true);
+                                        figures.remove(figures.get(j));
+                                        figures.add(figuraFoco);
+                                    }
+                                }
+                                repaint();
                             }
 
                             else if(button.getType() == 2) //Triang
                             {
-                                int PanelWidht = MyPanel.super.getWidth()/2;
-                                int PanelHeight = MyPanel.super.getHeight()/2;
 
-                                figuraFoco =  new Triangle(
-                                        PanelWidht-50,
-                                        PanelHeight+50,
-                                        PanelWidht,
-                                        PanelHeight-75,
-                                        PanelWidht+50,
-                                        PanelHeight+50,
+                                figuraFoco =  new Triangle( MyPanel.super.getWidth()/2-50,
+                                        MyPanel.super.getHeight()/2-50,
+                                        100,
+                                        100,
                                         Color.black,
                                         Color.gray);
+
+                                figures.add(figuraFoco);
+
+                                focusChangeList.add(figuraFoco);
+
+                                for(int j=0; j < figures.size(); j++)
+                                {
+                                    if(figuraFoco == figures.get(j))
+                                    {
+                                        figures.get(j).setFocus(true);
+                                        figures.remove(figures.get(j));
+                                        figures.add(figuraFoco);
+                                    }
+                                }
+                                repaint();
                             }
 
                             else if(button.getType() == 3) //Losang
                             {
-                                int PanelWidht = MyPanel.super.getWidth()/2;
-                                int PanelHeight = MyPanel.super.getHeight()/2;
 
-                                figuraFoco =  new Losango(
-                                        PanelWidht-50,
-                                        PanelHeight,
-                                        PanelWidht,
-                                        PanelHeight-100,
-                                        PanelWidht+50,
-                                        PanelHeight,
-                                        PanelWidht,
-                                        PanelHeight+100,
+                                figuraFoco =  new Losango( MyPanel.super.getWidth()/2-50,
+                                        MyPanel.super.getHeight()/2-50,
+                                        100,
+                                        100,
                                         Color.black,
                                         Color.gray);
 
+                                figures.add(figuraFoco);
+
+                                focusChangeList.add(figuraFoco);
+
+                                for(int j=0; j < figures.size(); j++)
+                                {
+                                    if(figuraFoco == figures.get(j))
+                                    {
+                                        figures.get(j).setFocus(true);
+                                        figures.remove(figures.get(j));
+                                        figures.add(figuraFoco);
+                                    }
+                                }
+                                repaint();
+
                             }
 
-                            figures.add(figuraFoco);
-
-                            focusChangeList.add(figuraFoco);
-
-                            for(int j=0; j < figures.size(); j++)
+                            else if(button.getType() == 4) //Eraser
                             {
-                                if(figuraFoco == figures.get(j))
+                                figures.remove(figuraFoco);
+                                focusChangeList.remove((figuraFoco));
+
+                                figuraFoco = null;
+                                figuraMouse = null;
+                                cont = 0;
+                                repaint();
+                            }
+                            else if(button.getType() == 5) //Color chooser
+                            {
+                                if(figuraFoco != null)
                                 {
-                                    figures.get(j).setFocus(true);
-                                    figures.remove(figures.get(j));
-                                    figures.add(figuraFoco);
+                                    Object[] options = {"Fundo", "Contorno"};
+
+                                    int escolha = showOptionDialog(null, "Deseja trocar a cor de qual parte da figura?", "Troca de cor", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, icone, options, options[0]);
+
+                                    if(escolha == 0)
+                                    {
+                                        Color cor = JColorChooser.showDialog(null, "Seletor de cores!", figuraFoco.getColorFundo());
+                                        figuraFoco.setColorFundo(cor);
+                                    }
+                                    else if(escolha == 1)
+                                    {
+                                        Color cor = JColorChooser.showDialog(null, "Seletor de cores!", figuraFoco.getColorContorno());
+                                        figuraFoco.setColorContorno(cor);
+                                    }
                                 }
                             }
-                            repaint();
                         }
                     }
+                    repaint();
                 }
                 for (Figura figure : figures)
                 {
@@ -603,13 +604,10 @@ public class MyPanel extends JPanel
                         figure.setFocus(false);
                     }
                     repaint();
-                    figuraFoco =  new Triangle(
-                            whereX-50,
-                            whereY+50,
-                            whereX,
-                            whereY-75,
-                            whereX+50,
-                            whereY+50,
+                    figuraFoco =  new Triangle( MyPanel.super.getWidth()/2-50,
+                            MyPanel.super.getHeight()/2-50,
+                            100,
+                            100,
                             Color.black,
                             Color.gray);
 
@@ -637,15 +635,10 @@ public class MyPanel extends JPanel
                         figure.setFocus(false);
                     }
                     repaint();
-                    figuraFoco =  new Losango(
-                            whereX-50,
-                            whereY+50,
-                            whereX,
-                            whereY-50,
-                            whereX+50,
-                            whereY+50,
-                            whereX,
-                            whereY+150,
+                    figuraFoco =  new Losango( MyPanel.super.getWidth()/2-50,
+                            MyPanel.super.getHeight()/2-50,
+                            100,
+                            100,
                             Color.black,
                             Color.gray);
 

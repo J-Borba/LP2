@@ -4,25 +4,31 @@ import java.awt.*;
 
 public class Losango extends Figura{
     private Polygon losango;
+
+    private int w, h;
+
     int[] pontosX = new int[] {0, 0, 0, 0};
     int[] pontosY = new int[] {0, 0, 0, 0};
 
-    public Losango(int x, int y, int x2, int y2, int x3, int y3, int x4, int y4, Color contorno, Color fundo)
+    public Losango(int x, int y, int w, int h, Color contorno, Color fundo)
     {
         super(x, y, contorno, fundo, false);
         this.pontosX[0] = xPoints[0];
-        this.pontosY[0] = yPoints[0];
+        this.pontosY[0] = yPoints[0]+h/2;
 
         this.type = "Losang";
 
-        this.pontosX[1] = x2;
-        this.pontosY[1] = y2;
+        this.w = w;
+        this.h = h;
 
-        this.pontosX[2] = x3;
-        this.pontosY[2] = y3;
+        this.pontosX[1] = xPoints[0] + w/2;
+        this.pontosY[1] = yPoints[0];
 
-        this.pontosX[3] = x4;
-        this.pontosY[3] = y4;
+        this.pontosX[2] = xPoints[0] + w;
+        this.pontosY[2] = yPoints[0] + h/2;
+
+        this.pontosX[3] = xPoints[0] + w/2;
+        this.pontosY[3] = yPoints[0] + h;
 
         losango = new Polygon();
 
@@ -34,71 +40,119 @@ public class Losango extends Figura{
     }
 
     @Override
-    public boolean corner(int[] coordenada) {
-        return coordenada[0] >= losango.xpoints[3]-10 && coordenada[0] <= losango.xpoints[3] &&
-                coordenada[1] >= losango.ypoints[3]-10 && coordenada[1] <= losango.ypoints[3];
-    }
-
-    @Override
-    public boolean pressed(int[] coordenada) {
-        return losango.contains(coordenada[0], coordenada[1]);
-    }
-
-    @Override
     public int[] getPosition() {
-        return new int[] {this.pontosX[0], this.pontosY[0],
-                          this.pontosX[1], this.pontosY[1],
-                          this.pontosX[2], this.pontosY[2],
-                          this.pontosX[3], this.pontosY[3]};
+        return new int[]{this.xPoints[0], this.yPoints[0]};
     }
 
     @Override
     public void setPosition(int[] coordenada) {
+        this.xPoints[0] += coordenada[0];
+        this.yPoints[0] += coordenada[1];
         losango.translate(coordenada[0], coordenada[1]);
     }
 
     @Override
     public int[] getSize() {
-        return new int[] {this.pontosX[0], this.pontosY[0],
-                          this.pontosX[1], this.pontosY[1],
-                          this.pontosX[2], this.pontosY[2],
-                          this.pontosX[3], this.pontosY[3]};
+        return new int[]{this.w, this.h};
     }
 
     @Override
-    public void resize(int[] dTamanho) {
-        int[] newPointx, newPointy;
+    public boolean corner(int[] coordenada) {
+        return coordenada[0] >= this.xPoints[0] + this.w-5 && coordenada[0] <= this.xPoints[0] + this.w &&
+                coordenada[1] >= this.yPoints[0] + this.h-5 && coordenada[1] <= this.yPoints[0] + this.h;
+    }
 
-        if(losango.xpoints[2] - losango.xpoints[0] <= 25)
+    @Override
+    public boolean pressed(int[] coordenada) {
+        return coordenada[0] >= this.xPoints[0] && coordenada[0] <= (this.xPoints[0] + this.w) &&
+                coordenada[1] >= this.yPoints[0] && coordenada[1] <= (this.yPoints[0] + this.h);
+    }
+
+    @Override
+    public void resize(int[] dTamanho){
+        if(dTamanho[2] == 5) //SE
         {
-            losango.xpoints[0] += dTamanho[1];
+            this.w += dTamanho[0]*2;
+            this.h += dTamanho[0]*2;
+            this.xPoints[0] -= dTamanho[0];
+            this.yPoints[0] -= dTamanho[0];
 
-            losango.ypoints[1] += dTamanho[1]*2;
+            if(this.w <= 10 || this.h <= 10)
+            {
+                this.w -= dTamanho[0]*2;
+                this.xPoints[0] += dTamanho[0];
 
-            losango.xpoints[2] -= dTamanho[1];
-
-            losango.ypoints[3] -= dTamanho[1]*2;
+                this.h -= dTamanho[0]*2;
+                this.yPoints[0] += dTamanho[0];
+            }
         }
-        else
+
+        else if(dTamanho[2] == 4) //W
         {
-            losango.xpoints[0] -= dTamanho[1];
+            this.w += dTamanho[0]*2;
+            this.xPoints[0] -= dTamanho[0];
 
-            losango.ypoints[1] -= dTamanho[1]*2;
-
-            losango.xpoints[2] += dTamanho[1];
-
-            losango.ypoints[3] += dTamanho[1]*2;
+            if(this.w <= 10)
+            {
+                this.w -= dTamanho[0]*2;
+                this.xPoints[0] += dTamanho[0];
+            }
         }
 
-        newPointx = losango.xpoints;
-        newPointy = losango.ypoints;
+        else if(dTamanho[2] == 3) // E
+        {
+            this.w -= dTamanho[0]*2;
+            this.xPoints[0] += dTamanho[0];
+
+            if(this.w <= 10)
+            {
+                this.w += dTamanho[0]*2;
+                this.xPoints[0] -= dTamanho[0];
+            }
+        }
+
+        else if(dTamanho[2] == 2) //S
+        {
+            this.h += dTamanho[1]*2;
+            this.yPoints[0] -= dTamanho[1];
+
+            if(this.h <= 10)
+            {
+                this.h -= dTamanho[1]*2;
+                this.yPoints[0] += dTamanho[1];
+            }
+        }
+
+        else if(dTamanho[2] == 1) //N
+        {
+            this.h -= dTamanho[1]*2;
+            this.yPoints[0] += dTamanho[1];
+
+            if(this.h <= 10)
+            {
+                this.h += dTamanho[1]*2;
+                this.yPoints[0] -= dTamanho[1];
+            }
+        }
 
         losango.reset();
 
-        losango.addPoint(newPointx[0], newPointy[0]);
-        losango.addPoint(newPointx[1], newPointy[1]);
-        losango.addPoint(newPointx[2], newPointy[2]);
-        losango.addPoint(newPointx[3], newPointy[3]);
+        this.pontosX[0] = xPoints[0];
+        this.pontosY[0] = yPoints[0]+h/2;
+
+        this.pontosX[1] = xPoints[0] + w/2;
+        this.pontosY[1] = yPoints[0];
+
+        this.pontosX[2] = xPoints[0] + w;
+        this.pontosY[2] = yPoints[0] + h/2;
+
+        this.pontosX[3] = xPoints[0] + w/2;
+        this.pontosY[3] = yPoints[0] + h;
+
+        losango.addPoint(pontosX[0], pontosY[0]);
+        losango.addPoint(pontosX[1], pontosY[1]);
+        losango.addPoint(pontosX[2], pontosY[2]);
+        losango.addPoint(pontosX[3], pontosY[3]);
     }
 
     @Override
@@ -120,6 +174,10 @@ public class Losango extends Figura{
             g2d.setColor(Color.red);
             g2d.setStroke(new BasicStroke(1));
             g2d.draw(losango);
+
+            g2d.setStroke(new BasicStroke(0.5F));
+            g2d.setColor(this.fundo);
+            g2d.drawRect(this.xPoints[0], this.yPoints[0], w, h);
         }
     }
 }

@@ -349,9 +349,22 @@ public class MyPanel extends JPanel
 
                                     buttons.get(4).setColor(new Color(210, 210, 210));
                                 }
+                                else
+                                {
+                                    Object[] options = {"Sim", "Nao"};
+                                    int escolha = showOptionDialog(null, "Deseja mudar a cor da tela toda? ", "Troca de cor", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, icone, options, options[0]);
+
+                                    if(escolha == 0)
+                                    {
+                                        Color cor = JColorChooser.showDialog(null, "Seletor de cores!", MyPanel.super.getBackground());
+                                        MyPanel.super.setBackground(cor);
+                                    }
+                                    buttons.get(4).setColor(new Color(210, 210, 210));
+                                }
                             }
                         }
                     }
+                    botaoMouse = null;
                     repaint();
                 }
                 for (Figura figure : figures)

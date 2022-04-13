@@ -606,8 +606,8 @@ public class MyPanel extends JPanel
                         figure.setFocus(false);
                     }
                     repaint();
-                    figuraFoco =  new Triangle( MyPanel.super.getWidth()/2-50,
-                            MyPanel.super.getHeight()/2-50,
+                    figuraFoco =  new Triangle(whereX - 50,
+                            whereY - 50,
                             100,
                             100,
                             Color.black,
@@ -637,8 +637,8 @@ public class MyPanel extends JPanel
                         figure.setFocus(false);
                     }
                     repaint();
-                    figuraFoco =  new Losango( MyPanel.super.getWidth()/2-50,
-                            MyPanel.super.getHeight()/2-50,
+                    figuraFoco =  new Losango(whereX - 50,
+                            whereY - 50,
                             100,
                             100,
                             Color.black,

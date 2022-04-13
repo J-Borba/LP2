@@ -346,6 +346,8 @@ public class MyPanel extends JPanel
                                         Color cor = JColorChooser.showDialog(null, "Seletor de cores!", figuraFoco.getColorContorno());
                                         figuraFoco.setColorContorno(cor);
                                     }
+
+                                    buttons.get(4).setColor(new Color(210, 210, 210));
                                 }
                             }
                         }

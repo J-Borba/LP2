@@ -21,7 +21,7 @@ public abstract class Button implements IVisible {
     public int getType(){return Type;}
 
     @Override
-    public boolean pressed(int[] coordenadas) {
+    public boolean clicked(int[] coordenadas) {
         return coordenadas[0] >= x && coordenadas[0] <= x+w    &&   coordenadas[1] >= y && coordenadas[1] <= y+h;
     }
 }

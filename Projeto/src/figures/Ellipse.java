@@ -38,7 +38,7 @@ public class Ellipse extends Figura{
     }
 
     @Override
-    public boolean pressed(int[] coordenada) {
+    public boolean clicked(int[] coordenada) {
         return coordenada[0] >= this.xPoints[0] && coordenada[0] <= (this.xPoints[0] + this.w) &&
                coordenada[1] >= this.yPoints[0] && coordenada[1] <= (this.yPoints[0] + this.h);
     }

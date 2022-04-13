@@ -64,7 +64,7 @@ public class MyPanel extends JPanel
 
                 for (Button btn : buttons)
                 {
-                    if(btn.pressed(new int[]{whereX, whereY}))
+                    if(btn.clicked(new int[]{whereX, whereY}))
                     {
                         botaoMouse = btn;
                         figuraMouse = null;
@@ -73,7 +73,7 @@ public class MyPanel extends JPanel
 
                 for (Figura figura : figures) {
                     if(figura != null){
-                        if(figura.pressed(new int[]{whereX, whereY}))
+                        if(figura.clicked(new int[]{whereX, whereY}))
                         {
                             figuraMouse = figura;
                             botaoMouse = null;
@@ -83,7 +83,7 @@ public class MyPanel extends JPanel
 
                 if(botaoMouse != null)
                 {
-                    if(botaoMouse.pressed(new int[] {whereX, whereY}))
+                    if(botaoMouse.clicked(new int[] {whereX, whereY}))
                     {
                         MyPanel.super.setCursor(handCur);
                     }
@@ -122,7 +122,7 @@ public class MyPanel extends JPanel
                                     whereY >= coordenada[1] && whereY <= coordenada[1] + tamanho[1]) {
                                 MyPanel.super.setCursor(wResizeCur);
                             }
-                            else if (figuraMouse.pressed(new int[]{whereX, whereY})) {
+                            else if (figuraMouse.clicked(new int[]{whereX, whereY})) {
                                 if (figuraMouse == figuraFoco) {
                                     MyPanel.super.setCursor(moveCur);
                                 } else {
@@ -203,7 +203,7 @@ public class MyPanel extends JPanel
                 {
                     coordenada = new int[]{e.getX(), e.getY()};
 
-                    if(button.pressed(coordenada))
+                    if(button.clicked(coordenada))
                     {
                         if(e.getButton() == MouseEvent.BUTTON1)
                         {
@@ -330,9 +330,10 @@ public class MyPanel extends JPanel
                             }
                             else if(button.getType() == 5) //Color chooser
                             {
+                                Object[] options;
                                 if(figuraFoco != null)
                                 {
-                                    Object[] options = {"Fundo", "Contorno"};
+                                    options = new Object[]{"Fundo", "Contorno"};
 
                                     int escolha = showOptionDialog(null, "Deseja trocar a cor de qual parte da figura?", "Troca de cor", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, icone, options, options[0]);
 
@@ -347,11 +348,10 @@ public class MyPanel extends JPanel
                                         figuraFoco.setColorContorno(cor);
                                     }
 
-                                    buttons.get(4).setColor(new Color(210, 210, 210));
                                 }
                                 else
                                 {
-                                    Object[] options = {"Sim", "Nao"};
+                                    options = new Object[]{"Sim", "Nao"};
                                     int escolha = showOptionDialog(null, "Deseja mudar a cor da tela toda? ", "Troca de cor", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, icone, options, options[0]);
 
                                     if(escolha == 0)
@@ -359,8 +359,8 @@ public class MyPanel extends JPanel
                                         Color cor = JColorChooser.showDialog(null, "Seletor de cores!", MyPanel.super.getBackground());
                                         MyPanel.super.setBackground(cor);
                                     }
-                                    buttons.get(4).setColor(new Color(210, 210, 210));
                                 }
+                                buttons.get(4).setColor(new Color(210, 210, 210));
                             }
                         }
                     }
@@ -372,7 +372,7 @@ public class MyPanel extends JPanel
                     figure.setFocus(false);
                     coordenada = new int[]{e.getX(), e.getY()};
 
-                    if (figure.pressed(coordenada))
+                    if (figure.clicked(coordenada))
                     {
                         figuraFoco = figure;
 

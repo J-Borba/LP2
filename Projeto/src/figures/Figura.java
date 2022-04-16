@@ -33,7 +33,7 @@ public abstract class Figura implements IVisible {
 
     public abstract int[] getSize();
 
-    public abstract void resize(int[] dTamanho);
+    public abstract void resize(int[] dTamanho, int tipo);
 
     public String getType(){return type;}
 

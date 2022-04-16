@@ -42,8 +42,8 @@ public class Rect extends Figura{
     }
 
     @Override
-    public void resize(int[] dTamanho){
-        if(dTamanho[2] == 5) //SE
+    public void resize(int[] dTamanho, int tipo){
+        if(tipo == 5) //SE
         {
             this.w += dTamanho[0]*2;
             this.h += dTamanho[0]*2;
@@ -60,7 +60,7 @@ public class Rect extends Figura{
             }
         }
 
-        else if(dTamanho[2] == 4) //W
+        else if(tipo == 4) //W
         {
             this.w += dTamanho[0]*2;
             this.xPoints[0] -= dTamanho[0];
@@ -72,7 +72,7 @@ public class Rect extends Figura{
             }
         }
 
-        else if(dTamanho[2] == 3) // E
+        else if(tipo == 3) // E
         {
             this.w -= dTamanho[0]*2;
             this.xPoints[0] += dTamanho[0];
@@ -84,7 +84,7 @@ public class Rect extends Figura{
             }
         }
 
-        else if(dTamanho[2] == 2) //S
+        else if(tipo == 2) //S
         {
             this.h += dTamanho[1]*2;
             this.yPoints[0] -= dTamanho[1];
@@ -96,7 +96,7 @@ public class Rect extends Figura{
             }
         }
 
-        else if(dTamanho[2] == 1) //N
+        else if(tipo == 1) //N
         {
             this.h -= dTamanho[1]*2;
             this.yPoints[0] += dTamanho[1];

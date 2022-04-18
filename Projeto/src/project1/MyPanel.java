@@ -60,7 +60,7 @@ public class MyPanel extends JPanel
 
                 for (Button btn : buttons)
                 {
-                    if(btn.clicked(new int[]{whereX, whereY}))
+                    if(btn.clicked(whereX, whereY))
                     {
                         botaoMouse = btn;
                         figuraMouse = null;
@@ -68,7 +68,7 @@ public class MyPanel extends JPanel
                 }
 
                 for (Figura figura : figures) {
-                    if(figura.clicked(new int[]{whereX, whereY}))
+                    if(figura.clicked(whereX, whereY))
                     {
                         figuraMouse = figura;
                         botaoMouse = null;
@@ -77,7 +77,7 @@ public class MyPanel extends JPanel
 
                 if(botaoMouse != null)
                 {
-                    if(botaoMouse.clicked(new int[] {whereX, whereY}))
+                    if(botaoMouse.clicked(whereX, whereY))
                     {
                         MyPanel.super.setCursor(handCur);
                     }
@@ -115,7 +115,7 @@ public class MyPanel extends JPanel
                     {
                         MyPanel.super.setCursor(wResizeCur);
                     }
-                    else if (figuraMouse.clicked(new int[]{whereX, whereY}))
+                    else if (figuraMouse.clicked(whereX, whereY))
                     {
                         if (figuraMouse == figuraFoco)
                         {
@@ -202,7 +202,7 @@ public class MyPanel extends JPanel
                 {
                     coordenada = new int[]{e.getX(), e.getY()};
 
-                    if(button.clicked(coordenada))
+                    if(button.clicked(coordenada[0], coordenada[1]))
                     {
                         if(e.getButton() == MouseEvent.BUTTON1)
                         {
@@ -366,7 +366,7 @@ public class MyPanel extends JPanel
                     figure.setFocus(false);
                     coordenada = new int[]{e.getX(), e.getY()};
 
-                    if (figure.clicked(coordenada))
+                    if (figure.clicked(coordenada[0], coordenada[1]))
                     {
                         figuraFoco = figure;
 

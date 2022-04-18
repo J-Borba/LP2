@@ -10,7 +10,7 @@ public class EllipseBtn extends Button {
 
         this.Type = 1;
 
-        this.setColor(new Color(210, 210, 210));
+        this.setColorFundo(new Color(210, 210, 210));
     }
 
     @Override

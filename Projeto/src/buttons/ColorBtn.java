@@ -8,7 +8,7 @@ public class ColorBtn extends Button {
 
         this.Type = 5;
 
-        this.setColor(new Color(210, 210, 210));
+        this.setColorFundo(new Color(210, 210, 210));
     }
 
     @Override

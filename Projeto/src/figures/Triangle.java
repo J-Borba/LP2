@@ -60,9 +60,9 @@ public class Triangle extends Figura{
     }
 
     @Override
-    public boolean clicked(int[] coordenada) {
-        return coordenada[0] >= this.xPoints[0] && coordenada[0] <= (this.xPoints[0] + this.w) &&
-                coordenada[1] >= this.yPoints[0] && coordenada[1] <= (this.yPoints[0] + this.h);
+    public boolean clicked(int clickX, int clickY) {
+        return clickX >= this.xPoints[0] && clickX <= (this.xPoints[0] + this.w) &&
+                clickY >= this.yPoints[0] && clickY <= (this.yPoints[0] + this.h);
     }
 
     @Override

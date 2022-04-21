@@ -16,12 +16,13 @@ public abstract class Button implements IVisible {
         this.h = h;
     }
 
-    public void setColor(Color cor){fundo = cor;}
-
     public int getType(){return Type;}
 
     @Override
-    public boolean clicked(int[] coordenadas) {
-        return coordenadas[0] >= x && coordenadas[0] <= x+w    &&   coordenadas[1] >= y && coordenadas[1] <= y+h;
+    public boolean clicked(int cx, int cy) {
+        return cx >= x && cx <= x+w && cy >= y && cy <= y+h;
     }
+
+    @Override
+    public void setColorFundo(Color fundo){this.fundo = fundo;}
 }

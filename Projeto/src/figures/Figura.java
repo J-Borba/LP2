@@ -44,5 +44,6 @@ public abstract class Figura implements IVisible {
     public void setColorContorno(Color contorno){this.contorno = contorno;}
 
     public Color getColorFundo(){return this.fundo;}
+    @Override
     public void setColorFundo(Color fundo){this.fundo = fundo;}
 }

@@ -1,4 +1,4 @@
-# Apresentação do repositório _LP2_
+# Apresentação do repositório _LP2_UERJ
 
 Este arquivo __README.md__ é uma das *várias* atividades que serão montadas neste ***repositório***. 😄
 

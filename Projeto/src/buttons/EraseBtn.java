@@ -3,10 +3,12 @@ package buttons;
 import java.awt.*;
 
 public class EraseBtn extends Button{
+    private int x, y, w, h;
+
     public EraseBtn(int x, int y, int w, int h) {
         super(x, y, w, h);
 
-        this.Type = 4;
+        this.setType(4);
 
         this.setColorFundo(new Color(210, 210, 210));
     }
@@ -14,6 +16,13 @@ public class EraseBtn extends Button{
     @Override
     public void paint(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
+
+        Color fundo = this.getFundo();
+
+        x = this.getX();
+        y = this.getY();
+        w = this.getW();
+        h = this.getH();
 
         RenderingHints render = new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2d.setRenderingHints(render);

@@ -17,29 +17,29 @@ import static javax.swing.JOptionPane.showOptionDialog;
 //Criando o panel
 public class MyPanel extends JPanel
 {
-    ImageIcon icone = new ImageIcon(getDefaultToolkit().getImage(getClass().getResource("logo.png")));
+    private final ImageIcon icone = new ImageIcon(getDefaultToolkit().getImage(getClass().getResource("logo.png")));
 
-    ArrayList<Figura> figures = new ArrayList<>();
-    ArrayList<Figura> focusChangeList = new ArrayList<>();
-    ArrayList<Button> buttons = new ArrayList<>();
+    private final ArrayList<Figura> figures = new ArrayList<>();
+    private final ArrayList<Figura> focusChangeList = new ArrayList<>();
+    private final ArrayList<Button> buttons = new ArrayList<>();
 
-    Figura figuraFoco = null;
-    Figura figuraMouse = null;
+    private Figura figuraFoco = null;
+    private Figura figuraMouse = null;
 
-    Button botaoMouse = null;
+    private Button botaoMouse = null;
 
-    Cursor nResizeCur = new Cursor(Cursor.N_RESIZE_CURSOR);
-    Cursor sResizeCur = new Cursor(Cursor.S_RESIZE_CURSOR);
-    Cursor eResizeCur = new Cursor(Cursor.E_RESIZE_CURSOR);
-    Cursor wResizeCur = new Cursor(Cursor.W_RESIZE_CURSOR);
-    Cursor seResizeCur = new Cursor(Cursor.SE_RESIZE_CURSOR);
-    Cursor defaultCur = new Cursor(Cursor.DEFAULT_CURSOR);
-    Cursor moveCur = new Cursor(Cursor.MOVE_CURSOR);
-    Cursor handCur = new Cursor(Cursor.HAND_CURSOR);
+    private final Cursor nResizeCur = new Cursor(Cursor.N_RESIZE_CURSOR);
+    private final Cursor sResizeCur = new Cursor(Cursor.S_RESIZE_CURSOR);
+    private final Cursor eResizeCur = new Cursor(Cursor.E_RESIZE_CURSOR);
+    private final Cursor wResizeCur = new Cursor(Cursor.W_RESIZE_CURSOR);
+    private final Cursor seResizeCur = new Cursor(Cursor.SE_RESIZE_CURSOR);
+    private final Cursor defaultCur = new Cursor(Cursor.DEFAULT_CURSOR);
+    private final Cursor moveCur = new Cursor(Cursor.MOVE_CURSOR);
+    private final Cursor handCur = new Cursor(Cursor.HAND_CURSOR);
 
-    int[] coordenada, tamanho;
+    private int[] coordenada, tamanho;
 
-    int clickX, clickY, whereX, whereY, cont=0;
+    private int clickX, clickY, whereX, whereY, cont=0;
 
     public MyPanel()
     {
@@ -673,17 +673,14 @@ public class MyPanel extends JPanel
         this.setPreferredSize(new Dimension(600, 600));
         this.setVisible(true);
     }
-
     //Metodo que pinta o Panel
     public void paint(Graphics g)
     {
         super.paint(g);
-
         for(Figura fig: figures)
         {
             fig.paint(g);
         }
-
         for(Button but : buttons)
         {
             but.paint(g);

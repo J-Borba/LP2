@@ -7,8 +7,8 @@ public class Triangle extends Figura{
 
     private int w, h;
 
-    int[] pontosX = new int[] {0, 0, 0};
-    int[] pontosY = new int[] {0, 0, 0};
+    private int[] pontosX = new int[] {0, 0, 0};
+    private int[] pontosY = new int[] {0, 0, 0};
 
     public Triangle(int x, int y, int w, int h, Color contorno, Color fundo)
     {
@@ -156,11 +156,11 @@ public class Triangle extends Figura{
 
         g2d.setRenderingHints(render);
 
-        g2d.setColor(this.fundo);
+        g2d.setColor(this.getColorFundo());
         g2d.fill(triangulo);
 
         g2d.setStroke(new BasicStroke(3));
-        g2d.setColor(this.contorno);
+        g2d.setColor(this.getColorContorno());
         g2d.draw(triangulo);
 
         if(this.getFocus()){
@@ -169,7 +169,7 @@ public class Triangle extends Figura{
             g2d.draw(triangulo);
 
             g2d.setStroke(new BasicStroke(0.5F));
-            g2d.setColor(this.fundo);
+            g2d.setColor(this.getColorFundo());
             g2d.drawRect(this.xPoints[0], this.yPoints[0], w, h);
         }
     }

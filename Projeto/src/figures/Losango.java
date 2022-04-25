@@ -7,8 +7,8 @@ public class Losango extends Figura{
 
     private int w, h;
 
-    int[] pontosX = new int[] {0, 0, 0, 0};
-    int[] pontosY = new int[] {0, 0, 0, 0};
+    private int[] pontosX = new int[] {0, 0, 0, 0};
+    private int[] pontosY = new int[] {0, 0, 0, 0};
 
     public Losango(int x, int y, int w, int h, Color contorno, Color fundo)
     {
@@ -163,11 +163,11 @@ public class Losango extends Figura{
 
         g2d.setRenderingHints(render);
 
-        g2d.setColor(this.fundo);
+        g2d.setColor(this.getColorFundo());
         g2d.fill(losango);
 
         g2d.setStroke(new BasicStroke(3));
-        g2d.setColor(this.contorno);
+        g2d.setColor(this.getColorContorno());
         g2d.draw(losango);
 
         if(this.getFocus()){
@@ -176,7 +176,7 @@ public class Losango extends Figura{
             g2d.draw(losango);
 
             g2d.setStroke(new BasicStroke(0.5F));
-            g2d.setColor(this.fundo);
+            g2d.setColor(this.getColorFundo());
             g2d.drawRect(this.xPoints[0], this.yPoints[0], w, h);
         }
     }

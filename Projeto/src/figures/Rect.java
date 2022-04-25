@@ -116,11 +116,11 @@ public class Rect extends Figura{
         RenderingHints render = new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2d.setRenderingHints(render);
 
-        g2d.setColor(this.fundo);
+        g2d.setColor(this.getColorFundo());
         g2d.fillRect(this.xPoints[0], this.yPoints[0], this.w, this.h);
 
         g2d.setStroke(new BasicStroke(3));
-        g2d.setColor(this.contorno);
+        g2d.setColor(this.getColorContorno());
         g2d.drawRect(this.xPoints[0], this.yPoints[0], this.w, this.h);
 
         if(this.getFocus()){

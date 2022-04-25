@@ -106,11 +106,13 @@ public class Ellipse extends Figura{
 
         RenderingHints render = new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2d.setRenderingHints(render);
+
         //desenhando fundo
-        g2d.setColor(this.fundo);
+        g2d.setColor(this.getColorFundo());
         g2d.fill(new Ellipse2D.Double(this.xPoints[0], this.yPoints[0], this.w, this.h));
+
         //desenhando contorno
-        g2d.setColor(this.contorno);
+        g2d.setColor(this.getColorContorno());
         g2d.setStroke(new BasicStroke(3));
         g2d.draw(new Ellipse2D.Double(this.xPoints[0], this.yPoints[0], this.w, this.h));
 
@@ -119,7 +121,7 @@ public class Ellipse extends Figura{
             g2d.setColor(Color.red);
             g2d.setStroke(new BasicStroke(1));
             g2d.draw(new Ellipse2D.Double(this.xPoints[0]-2, this.yPoints[0]-2, this.w+4, this.h+4));
-            g2d.setColor(this.fundo);
+            g2d.setColor(this.getColorFundo());
             g2d.setStroke(new BasicStroke(0.5F));
             g2d.drawRect(this.xPoints[0]-2, this.yPoints[0]-2, this.w+4, this.h+4);
         }

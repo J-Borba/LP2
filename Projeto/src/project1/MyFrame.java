@@ -7,9 +7,9 @@ import static java.awt.Toolkit.*;
 public class MyFrame extends JFrame {
 
     //Criando um panel para o frame
-    MyPanel panel;
+    private MyPanel panel;
 
-    ImageIcon icone = new ImageIcon(getDefaultToolkit().getImage(getClass().getResource("logo.png")));
+    private ImageIcon icone = new ImageIcon(getDefaultToolkit().getImage(getClass().getResource("logo.png")));
 
     //Metodo construtor
     public MyFrame() {

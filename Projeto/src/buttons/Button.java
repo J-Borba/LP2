@@ -1,8 +1,8 @@
 package buttons;
 
-import ivisible.IVisible;
-
 import java.awt.*;
+
+import interfaces.IVisible;
 
 public abstract class Button implements IVisible {
     private int x, y, w, h, Type;

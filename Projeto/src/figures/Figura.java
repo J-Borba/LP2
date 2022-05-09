@@ -1,8 +1,8 @@
 package figures;
 
-import ivisible.IVisible;
-
 import java.awt.*;
+
+import interfaces.IVisible;
 
 public abstract class Figura implements IVisible {
 

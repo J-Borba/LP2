@@ -1,4 +1,4 @@
-package ivisible;
+package interfaces;
 
 import java.awt.*;
 

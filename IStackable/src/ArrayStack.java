@@ -18,10 +18,10 @@ public class ArrayStack implements IStackable{
 
     @Override
     public int pop() {
-        int backup = this.array.get(this.array.size()-1);
-        this.array.removeAll(array);
-        this.array.add(backup);
-
+        while(this.array.size() != 1)
+        {
+            this.array.remove(0);
+        }
         return this.array.get(0);
     }
 }

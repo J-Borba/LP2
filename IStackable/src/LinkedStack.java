@@ -14,16 +14,15 @@ public class LinkedStack implements IStackable{
 
     @Override
     public void push(int v) {
-        this.list.addLast(v);
+        this.list.add(v);
     }
 
     @Override
     public int pop() {
-        int backup = this.list.getLast();
-        this.list.removeAll(list);
-
-        this.list.addLast(backup);
-
-        return this.list.get(0);
+        while(this.list.size() != 1)
+        {
+            this.list.removeFirst();
+        }
+        return this.list.getFirst();
     }
 }

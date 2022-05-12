@@ -1,10 +1,11 @@
 package figures;
 
 import java.awt.*;
+import java.io.Serializable;
 
 import interfaces.IVisible;
 
-public abstract class Figura implements IVisible {
+public abstract class Figura implements IVisible, Serializable {
 
     protected int[] xPoints = new int[] {0};
     protected int[] yPoints = new int[] {0};

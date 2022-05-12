@@ -7,6 +7,8 @@ import figures.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
 import static java.awt.Toolkit.getDefaultToolkit;
@@ -19,8 +21,8 @@ public class MyPanel extends JPanel
 {
     private final ImageIcon icone = new ImageIcon(getDefaultToolkit().getImage(getClass().getResource("logo.png")));
 
-    private final ArrayList<Figura> figures = new ArrayList<>();
-    private final ArrayList<Figura> focusChangeList = new ArrayList<>();
+    public static ArrayList<Figura> figures = new ArrayList<>();
+    private ArrayList<Figura> focusChangeList = new ArrayList<>();
     private final ArrayList<Button> buttons = new ArrayList<>();
 
     private Figura figuraFoco = null;

@@ -15,10 +15,6 @@ public abstract class Button implements IVisible {
         this.w = w;
         this.h = h;
     }
-
-    protected void setX(int x){this.x = x;}
-    protected void setY(int y){this.y = y;}
-
     protected int getX(){return this.x;}
     protected int getY(){return this.y;}
 
@@ -26,10 +22,9 @@ public abstract class Button implements IVisible {
     protected int getH(){return this.h;}
 
     protected void setType(int Type){this.Type = Type;}
+    public int getType(){return this.Type;}
 
     protected Color getFundo(){return this.fundo;}
-
-    public int getType(){return Type;}
 
     @Override
     public boolean clicked(int cx, int cy) {

@@ -7,7 +7,7 @@ public class Rect extends Figura{
     private int w, h;
 
     public Rect(int x, int y, int w, int h, Color contorno, Color fundo){
-        super(x, y, contorno, fundo, false);
+        super(x, y, contorno, fundo);
         this.w = w;
         this.h = h;
         this.type = "Rect";
@@ -110,7 +110,7 @@ public class Rect extends Figura{
     }
 
     @Override
-    public void paint(Graphics g) {
+    public void paint(Graphics g, boolean focused) {
         Graphics2D g2d = (Graphics2D) g;
 
         RenderingHints render = new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
@@ -123,7 +123,7 @@ public class Rect extends Figura{
         g2d.setColor(this.getColorContorno());
         g2d.drawRect(this.xPoints[0], this.yPoints[0], this.w, this.h);
 
-        if(this.getFocus()){
+        if(focused){
             g2d.setColor(Color.red);
             g2d.setStroke(new BasicStroke(1));
             g2d.drawRect(this.xPoints[0]-2, this.yPoints[0]-2, this.w+4, this.h+4);

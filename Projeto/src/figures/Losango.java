@@ -12,7 +12,7 @@ public class Losango extends Figura{
 
     public Losango(int x, int y, int w, int h, Color contorno, Color fundo)
     {
-        super(x, y, contorno, fundo, false);
+        super(x, y, contorno, fundo);
         this.pontosX[0] = xPoints[0];
         this.pontosY[0] = yPoints[0]+h/2;
 
@@ -156,7 +156,7 @@ public class Losango extends Figura{
     }
 
     @Override
-    public void paint(Graphics g) {
+    public void paint(Graphics g, boolean focused) {
         Graphics2D g2d = (Graphics2D) g;
 
         RenderingHints render = new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
@@ -170,7 +170,7 @@ public class Losango extends Figura{
         g2d.setColor(this.getColorContorno());
         g2d.draw(losango);
 
-        if(this.getFocus()){
+        if(focused){
             g2d.setColor(Color.red);
             g2d.setStroke(new BasicStroke(1));
             g2d.draw(losango);

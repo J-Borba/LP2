@@ -16,7 +16,7 @@ public abstract class Figura implements IVisible, Serializable {
 
     private Color contorno, fundo;
 
-    public Figura(int x, int y, Color contorno, Color fundo, boolean focus){
+    public Figura(int x, int y, Color contorno, Color fundo){
         this.xPoints[0] = x;
         this.yPoints[0] = y;
 
@@ -34,9 +34,6 @@ public abstract class Figura implements IVisible, Serializable {
     public abstract int[] getSize();
 
     public abstract void resize(int[] dTamanho, int tipo);
-
-    public void setFocus(boolean foco){focus = foco;}
-    public boolean getFocus(){return focus;}
 
     public void setColorContorno(Color contorno){this.contorno = contorno;}
     public Color getColorContorno(){return this.contorno;}

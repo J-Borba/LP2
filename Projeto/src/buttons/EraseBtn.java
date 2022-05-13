@@ -14,7 +14,7 @@ public class EraseBtn extends Button{
     }
 
     @Override
-    public void paint(Graphics g) {
+    public void paint(Graphics g, boolean focused) {
         Graphics2D g2d = (Graphics2D) g;
 
         Color fundo = this.getFundo();

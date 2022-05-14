@@ -1,19 +1,104 @@
 package buttons;
 
 import java.awt.*;
+import java.awt.geom.Ellipse2D;
 
 import interfaces.IVisible;
 
-public abstract class Button implements IVisible {
-    private int x, y, w, h, Type;
+public class Button implements IVisible {
+    private int x, y, w, h;
+    private final int Type;
     private Color fundo;
 
-    public Button(int x, int y, int w, int h)
+    public Button(int x, int y, int w, int h, int Type)
     {
         this.x = x;
         this.y = y;
         this.w = w;
         this.h = h;
+        this.Type = Type;
+        this.fundo = new Color(210, 210, 210);
+    }
+    public void paint(Graphics g, boolean focused) {
+        Graphics2D g2d = (Graphics2D) g;
+
+        Color fundo = this.getFundo();
+
+        x = this.getX();
+        y = this.getY();
+        w = this.getW();
+        h = this.getH();
+
+        RenderingHints render = new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        g2d.setRenderingHints(render);
+
+        g2d.setStroke(new BasicStroke(2));
+
+        g2d.setColor(fundo);
+        g2d.fillRoundRect(x, y, w, h, 25, 25);
+
+        g2d.setColor(new Color(160, 160, 160));
+        g2d.drawRoundRect(x, y, w, h, 25, 25);
+
+        if(this.Type == 0)//Rect
+        {
+            g2d.setColor(Color.black);
+            g2d.drawRect(x+w/4, y+h/4, w/2+1, h/2+1);
+
+            g2d.setColor(Color.white);
+            g2d.fillRect(x+w/4+2, y+h/4+2, w/2-2, h/2-2);
+        }
+        else if(this.Type == 1)//Ellipse
+        {
+            g2d.setColor(Color.black);
+            g2d.draw(new Ellipse2D.Double(x+w/4.0 , y+h/4.0, w/2.0, h/2.0));
+
+            g2d.setColor(Color.white);
+            g2d.fill(new Ellipse2D.Double(x+w/4.0+2, y+h/4.0+2, w/2.0-3.5, h/2.0-3.5));
+        }
+        else if(this.Type == 2)//Triang
+        {
+            g2d.setColor(Color.black);
+            Polygon triangulo = new Polygon();
+
+            triangulo.addPoint(25, 185);
+            triangulo.addPoint(x+w/2, y+15);
+            triangulo.addPoint(45, 185);
+
+            g2d.setStroke(new BasicStroke(5));
+            g2d.draw(triangulo);
+
+            g2d.setColor(Color.white);
+            g2d.fill(triangulo);
+        }
+        else if(this.Type == 3)//Losang
+        {
+            g2d.setColor(Color.black);
+            Polygon losang = new Polygon();
+
+            losang.addPoint(x+w/2, 250);
+            losang.addPoint(25, y+h/2);
+            losang.addPoint(x+w/2, y+10);
+            losang.addPoint(45, y+h/2);
+
+            g2d.setStroke(new BasicStroke(5));
+            g2d.draw(losang);
+
+            g2d.setColor(Color.white);
+            g2d.fill(losang);
+        }
+        else if(this.Type == 4)//DEL
+        {
+            g2d.setColor(Color.black);
+            g2d.setFont(new Font("Consolas", Font.BOLD, 20));
+            g2d.drawString("DEL", x+10, y+30);
+        }
+        else if(this.Type == 5)//COR
+        {
+            g2d.setColor(Color.black);
+            g2d.setFont(new Font("Consolas", Font.BOLD, 20));
+            g2d.drawString("COR", x+9, y+31);
+        }
     }
     protected int getX(){return this.x;}
     protected int getY(){return this.y;}
@@ -21,7 +106,6 @@ public abstract class Button implements IVisible {
     protected int getW(){return this.w;}
     protected int getH(){return this.h;}
 
-    protected void setType(int Type){this.Type = Type;}
     public int getType(){return this.Type;}
 
     protected Color getFundo(){return this.fundo;}

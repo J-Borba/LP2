@@ -1,6 +1,5 @@
 package project1;
 
-import buttons.*;
 import buttons.Button;
 import figures.*;
 import javax.swing.*;
@@ -17,7 +16,7 @@ public class MyPanel extends JPanel
     private final ArrayList<Button> buttons = new ArrayList<>();
     private Figura figuraFoco = null;
     private Figura figuraMouse = null;
-    private Button botaoFoco = null;
+    private final Button botaoFoco = null;
     private Button botaoMouse = null;
     private final Cursor nResizeCur = new Cursor(Cursor.N_RESIZE_CURSOR);
     private final Cursor sResizeCur = new Cursor(Cursor.S_RESIZE_CURSOR);
@@ -28,18 +27,15 @@ public class MyPanel extends JPanel
     private final Cursor moveCur = new Cursor(Cursor.MOVE_CURSOR);
     private final Cursor handCur = new Cursor(Cursor.HAND_CURSOR);
     private int[] coordenada, tamanho;
-    private int clickX;
-    private int clickY;
-    private int whereX;
-    private int whereY;
+    private int clickX, clickY, whereX, whereY;
     public MyPanel()
     {
-        buttons.add(new RectBtn(10, 30, 50, 50));
-        buttons.add(new EllipseBtn(10, 90, 50, 50));
-        buttons.add(new TriangBtn(10, 150, 50, 50));
-        buttons.add(new LosangBtn(10, 210, 50, 50));
-        buttons.add(new ColorBtn(10, 270, 50, 50));
-        buttons.add(new EraseBtn(10, 330, 50, 50));
+        buttons.add(new Button(10, 30, 50, 50, 0));
+        buttons.add(new Button(10, 90, 50, 50, 1));
+        buttons.add(new Button(10, 150, 50, 50, 2));
+        buttons.add(new Button(10, 210, 50, 50, 3));
+        buttons.add(new Button(10, 270, 50, 50, 5));
+        buttons.add(new Button(10, 330, 50, 50, 4));
         this.addMouseMotionListener(new MouseMotionAdapter()
         {
             @Override
@@ -399,7 +395,7 @@ public class MyPanel extends JPanel
                     figuraMouse = null;
                     repaint();
                 }
-                
+
                 if (figuraFoco != null)
                 {
                     if(e.getKeyCode() == VK_UP)
@@ -445,8 +441,11 @@ public class MyPanel extends JPanel
                 repaint();
                 }
                 if(figures.size() > 0) {
-                    if (e.getKeyCode() == VK_TAB) {
-
+                    if (e.getKeyCode() == VK_TAB)
+                    {
+                        figuraFoco = figures.get(0);
+                        figures.remove(figures.get(0));
+                        figures.add(figuraFoco);
                     }
                 }
                 if(e.getKeyChar() == 'r' || e.getKeyChar() == 'R')

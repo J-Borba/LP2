@@ -40,6 +40,12 @@ public class Button implements IVisible {
         g2d.setColor(new Color(160, 160, 160));
         g2d.drawRoundRect(x, y, w, h, 25, 25);
 
+        if(focused)
+        {
+            g2d.setColor(new Color(120, 120, 120));
+            g2d.fillRoundRect(x, y, w, h, 25, 25);
+        }
+
         if(this.Type == 0)//Rect
         {
             g2d.setColor(Color.black);

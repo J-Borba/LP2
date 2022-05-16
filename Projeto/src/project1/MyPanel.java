@@ -16,7 +16,7 @@ public class MyPanel extends JPanel
     private final ArrayList<Button> buttons = new ArrayList<>();
     private Figura figuraFoco = null;
     private Figura figuraMouse = null;
-    private final Button botaoFoco = null;
+    private Button botaoFoco = null;
     private Button botaoMouse = null;
     private final Cursor nResizeCur = new Cursor(Cursor.N_RESIZE_CURSOR);
     private final Cursor sResizeCur = new Cursor(Cursor.S_RESIZE_CURSOR);
@@ -172,99 +172,113 @@ public class MyPanel extends JPanel
                 }
                 clickX = e.getX();
                 clickY = e.getY();
+                if(botaoFoco != null)
+                {
+                    if(botaoFoco.getType() == 0) //Retangulo
+                    {
+                        figuraFoco =  new Rect( clickX-50,
+                                clickY-50,
+                                100,
+                                100,
+                                Color.black,
+                                Color.gray);
+
+                        figures.add(figuraFoco);
+
+                        for(int j=0; j < figures.size(); j++)
+                        {
+                            if(figuraFoco == figures.get(j))
+                            {
+                                figures.remove(figures.get(j));
+                                figures.add(figuraFoco);
+                            }
+                        }
+                    }
+                    else if(botaoFoco.getType() == 1) //Ellipse
+                    {
+                        figuraFoco =  new Ellipse( clickX-50,
+                                clickY-50,
+                                100,
+                                100,
+                                Color.black,
+                                Color.gray);
+
+                        figures.add(figuraFoco);
+
+                        for(int j=0; j < figures.size(); j++)
+                        {
+                            if(figuraFoco == figures.get(j))
+                            {
+                                figures.remove(figures.get(j));
+                                figures.add(figuraFoco);
+                            }
+                        }
+                    }
+                    else if(botaoFoco.getType() == 2) //Triangulo
+                    {
+                        figuraFoco =  new Triangle( clickX-50,
+                                clickY-50,
+                                100,
+                                100,
+                                Color.black,
+                                Color.gray);
+
+                        figures.add(figuraFoco);
+
+                        for(int j=0; j < figures.size(); j++)
+                        {
+                            if(figuraFoco == figures.get(j))
+                            {
+                                figures.remove(figures.get(j));
+                                figures.add(figuraFoco);
+                            }
+                        }
+                    }
+                    else if(botaoFoco.getType() == 3) //Losango
+                    {
+                        figuraFoco =  new Losango( clickX-50,
+                                clickY-50,
+                                100,
+                                100,
+                                Color.black,
+                                Color.gray);
+
+                        figures.add(figuraFoco);
+
+                        for(int j=0; j < figures.size(); j++)
+                        {
+                            if(figuraFoco == figures.get(j))
+                            {
+                                figures.remove(figures.get(j));
+                                figures.add(figuraFoco);
+                            }
+                        }
+                    }
+                    botaoFoco = null;
+                    repaint();
+                }
                 for(Button button : buttons)
                 {
-                    coordenada = new int[]{e.getX(), e.getY()};
 
-                    if(button.clicked(coordenada[0], coordenada[1]))
+                    if(button.clicked(clickX, clickY))
                     {
                         if(e.getButton() == MouseEvent.BUTTON1)
                         {
-                            button.setColorFundo(new Color(100, 100, 100));
-
                             if(button.getType() == 0) //Rect
                             {
-                                figuraFoco =  new Rect( MyPanel.super.getWidth()/2-50,
-                                        MyPanel.super.getHeight()/2-50,
-                                        100,
-                                        100,
-                                        Color.black,
-                                        Color.gray);
-
-                                figures.add(figuraFoco);
-
-                                for(int j=0; j < figures.size(); j++)
-                                {
-                                    if(figuraFoco == figures.get(j))
-                                    {
-                                        figures.remove(figures.get(j));
-                                        figures.add(figuraFoco);
-                                    }
-                                }
-                                repaint();
+                                botaoFoco = buttons.get(0);
                             }
                             else if(button.getType() == 1) //Ellipse
                             {
-                                figuraFoco =  new Ellipse( MyPanel.super.getWidth()/2-50,
-                                        MyPanel.super.getHeight()/2-50,
-                                        100,
-                                        100,
-                                        Color.black,
-                                        Color.gray);
-
-                                figures.add(figuraFoco);
-
-                                for(int j=0; j < figures.size(); j++)
-                                {
-                                    if(figuraFoco == figures.get(j))
-                                    {
-                                        figures.remove(figures.get(j));
-                                        figures.add(figuraFoco);
-                                    }
-                                }
-                                repaint();
+                                botaoFoco = buttons.get(1);
                             }
                             else if(button.getType() == 2) //Triang
                             {
-                                figuraFoco =  new Triangle( MyPanel.super.getWidth()/2-50,
-                                        MyPanel.super.getHeight()/2-50,
-                                        100,
-                                        100,
-                                        Color.black,
-                                        Color.gray);
-
-                                figures.add(figuraFoco);
-
-                                for(int j=0; j < figures.size(); j++)
-                                {
-                                    if(figuraFoco == figures.get(j))
-                                    {
-                                        figures.remove(figures.get(j));
-                                        figures.add(figuraFoco);
-                                    }
-                                }
-                                repaint();
+                                botaoFoco = buttons.get(2);
                             }
                             else if(button.getType() == 3) //Losang
                             {
-                                figuraFoco =  new Losango( MyPanel.super.getWidth()/2-50,
-                                        MyPanel.super.getHeight()/2-50,
-                                        100,
-                                        100,
-                                        Color.black,
-                                        Color.gray);
-
-                                figures.add(figuraFoco);
-
-                                for(int j=0; j < figures.size(); j++)
-                                {
-                                    if(figuraFoco == figures.get(j))
-                                    {
-                                        figures.remove(figures.get(j));
-                                        figures.add(figuraFoco);
-                                    }
-                                }
-                                repaint();
+                                botaoFoco = buttons.get(3);
                             }
                             else if(button.getType() == 4) //Eraser
                             {
@@ -272,7 +286,6 @@ public class MyPanel extends JPanel
 
                                 figuraFoco = null;
                                 figuraMouse = null;
-                                repaint();
                             }
                             else if(button.getType() == 5) //Color chooser
                             {
@@ -305,12 +318,11 @@ public class MyPanel extends JPanel
                                         MyPanel.super.setBackground(cor);
                                     }
                                 }
-                                buttons.get(4).setColorFundo(new Color(210, 210, 210));//Voltar a cor do botao de cor
                             }
+                            botaoMouse = null;
+                            repaint();
                         }
                     }
-                    botaoMouse = null;
-                    repaint();
                 }
                 for (Figura figure : figures)
                 {
@@ -446,6 +458,7 @@ public class MyPanel extends JPanel
                         figuraFoco = figures.get(0);
                         figures.remove(figures.get(0));
                         figures.add(figuraFoco);
+                        repaint();
                     }
                 }
                 if(e.getKeyChar() == 'r' || e.getKeyChar() == 'R')
@@ -456,7 +469,6 @@ public class MyPanel extends JPanel
                             100,
                             Color.black,
                             Color.gray);
-
                     figures.add(figuraFoco);
 
                     for(int j=0; j < figures.size(); j++)
@@ -479,7 +491,6 @@ public class MyPanel extends JPanel
                             100,
                             Color.black,
                             Color.gray);
-
                     figures.add(figuraFoco);
 
                     for(int j=0; j < figures.size(); j++)
@@ -501,7 +512,6 @@ public class MyPanel extends JPanel
                             100,
                             Color.black,
                             Color.gray);
-
                     figures.add(figuraFoco);
 
                     for(int j=0; j < figures.size(); j++)
@@ -522,7 +532,6 @@ public class MyPanel extends JPanel
                             100,
                             Color.black,
                             Color.gray);
-
                     figures.add(figuraFoco);
 
                     for(int j=0; j < figures.size(); j++)
@@ -568,7 +577,7 @@ public class MyPanel extends JPanel
         }
         for(Button but : buttons)
         {
-            but.paint(g, but == botaoMouse);
+            but.paint(g, but == botaoFoco);
         }
     }
 }

@@ -10,8 +10,6 @@ public abstract class Figura implements IVisible, Serializable {
     protected int[] xPoints = new int[] {0};
     protected int[] yPoints = new int[] {0};
 
-    private boolean focus;
-
     protected String type;
 
     private Color contorno, fundo;
@@ -22,9 +20,9 @@ public abstract class Figura implements IVisible, Serializable {
 
         this.contorno = contorno;
         this.fundo = fundo;
-
-        this.focus = focus;
     }
+
+    public String getType(){return this.type;}
 
     public abstract boolean corner(int[] coordenada);
 

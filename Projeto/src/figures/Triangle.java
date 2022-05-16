@@ -61,8 +61,7 @@ public class Triangle extends Figura{
 
     @Override
     public boolean clicked(int clickX, int clickY) {
-        return clickX >= this.xPoints[0] && clickX <= (this.xPoints[0] + this.w) &&
-                clickY >= this.yPoints[0] && clickY <= (this.yPoints[0] + this.h);
+        return this.triangulo.contains(clickX, clickY);
     }
 
     @Override
@@ -81,30 +80,6 @@ public class Triangle extends Figura{
 
                 this.h -= dTamanho[0]*2;
                 this.yPoints[0] += dTamanho[0];
-            }
-        }
-
-        else if(tipo == 4) //W
-        {
-            this.w += dTamanho[0]*2;
-            this.xPoints[0] -= dTamanho[0];
-
-            if(this.w <= 10)
-            {
-                this.w -= dTamanho[0]*2;
-                this.xPoints[0] += dTamanho[0];
-            }
-        }
-
-        else if(tipo == 3) // E
-        {
-            this.w -= dTamanho[0]*2;
-            this.xPoints[0] += dTamanho[0];
-
-            if(this.w <= 10)
-            {
-                this.w += dTamanho[0]*2;
-                this.xPoints[0] -= dTamanho[0];
             }
         }
 
@@ -167,10 +142,6 @@ public class Triangle extends Figura{
             g2d.setColor(Color.red);
             g2d.setStroke(new BasicStroke(1));
             g2d.draw(triangulo);
-
-            g2d.setStroke(new BasicStroke(0.5F));
-            g2d.setColor(this.getColorFundo());
-            g2d.drawRect(this.xPoints[0], this.yPoints[0], w, h);
         }
     }
 }

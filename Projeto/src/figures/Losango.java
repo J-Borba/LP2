@@ -64,8 +64,7 @@ public class Losango extends Figura{
 
     @Override
     public boolean clicked(int clickX, int clickY) {
-        return clickX >= this.xPoints[0] && clickX <= (this.xPoints[0] + this.w) &&
-                clickY >= this.yPoints[0] && clickY <= (this.yPoints[0] + this.h);
+        return this.losango.contains(clickX, clickY);
     }
 
     @Override
@@ -174,10 +173,6 @@ public class Losango extends Figura{
             g2d.setColor(Color.red);
             g2d.setStroke(new BasicStroke(1));
             g2d.draw(losango);
-
-            g2d.setStroke(new BasicStroke(0.5F));
-            g2d.setColor(this.getColorFundo());
-            g2d.drawRect(this.xPoints[0], this.yPoints[0], w, h);
         }
     }
 }

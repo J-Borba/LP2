@@ -109,7 +109,7 @@ public class Button implements IVisible {
         {
             g2d.setColor(Color.black);
             g2d.setFont(new Font("Consolas", Font.BOLD, 20));
-            g2d.drawString("Botões", x+8, y+20);
+            g2d.drawString("Menu", x+18, y+20);
         }
     }
     protected int getX(){return this.x;}

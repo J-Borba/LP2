@@ -14,17 +14,14 @@ import static java.awt.Toolkit.*;
 
 public class MyFrame extends JFrame {
 
-    //Criando um panel para o frame
-    private MyPanel panel;
-
-    private ImageIcon icone = new ImageIcon(getDefaultToolkit().getImage(getClass().getResource("logo.png")));
-
     //Metodo construtor
     public MyFrame() {
+        ImageIcon icone = new ImageIcon(getDefaultToolkit().getImage(getClass().getResource("logo.png")));
         this.setIconImage(icone.getImage());
 
         //Inicializando o panel
-        panel = new MyPanel();
+        //Criando um panel para o frame
+        MyPanel panel = new MyPanel();
         try{
             FileInputStream f = new FileInputStream("proj.bin");
             ObjectInputStream o = new ObjectInputStream(f);

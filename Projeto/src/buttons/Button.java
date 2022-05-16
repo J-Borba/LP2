@@ -67,9 +67,9 @@ public class Button implements IVisible {
             g2d.setColor(Color.black);
             Polygon triangulo = new Polygon();
 
-            triangulo.addPoint(25, 185);
+            triangulo.addPoint(x + 15, y + 35);
             triangulo.addPoint(x+w/2, y+15);
-            triangulo.addPoint(45, 185);
+            triangulo.addPoint(x + 35, y + 35);
 
             g2d.setStroke(new BasicStroke(5));
             g2d.draw(triangulo);
@@ -82,10 +82,10 @@ public class Button implements IVisible {
             g2d.setColor(Color.black);
             Polygon losang = new Polygon();
 
-            losang.addPoint(x+w/2, 250);
-            losang.addPoint(25, y+h/2);
+            losang.addPoint(x+w/2, y + 40);
+            losang.addPoint(x + 15, y+h/2);
             losang.addPoint(x+w/2, y+10);
-            losang.addPoint(45, y+h/2);
+            losang.addPoint(x + 35, y+h/2);
 
             g2d.setStroke(new BasicStroke(5));
             g2d.draw(losang);
@@ -104,6 +104,12 @@ public class Button implements IVisible {
             g2d.setColor(Color.black);
             g2d.setFont(new Font("Consolas", Font.BOLD, 20));
             g2d.drawString("COR", x+9, y+31);
+        }
+        else if(this.Type == 6)
+        {
+            g2d.setColor(Color.black);
+            g2d.setFont(new Font("Consolas", Font.BOLD, 20));
+            g2d.drawString("Botões", x+8, y+20);
         }
     }
     protected int getX(){return this.x;}

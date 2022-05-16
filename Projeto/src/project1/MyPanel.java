@@ -18,6 +18,7 @@ public class MyPanel extends JPanel
     private Figura figuraMouse = null;
     private Button botaoFoco = null;
     private Button botaoMouse = null;
+    private final Button GUI = new Button(5, 10, 80, 30, 6);
     private final Cursor nResizeCur = new Cursor(Cursor.N_RESIZE_CURSOR);
     private final Cursor sResizeCur = new Cursor(Cursor.S_RESIZE_CURSOR);
     private final Cursor eResizeCur = new Cursor(Cursor.E_RESIZE_CURSOR);
@@ -30,12 +31,6 @@ public class MyPanel extends JPanel
     private int clickX, clickY, whereX, whereY;
     public MyPanel()
     {
-        buttons.add(new Button(10, 30, 50, 50, 0));
-        buttons.add(new Button(10, 90, 50, 50, 1));
-        buttons.add(new Button(10, 150, 50, 50, 2));
-        buttons.add(new Button(10, 210, 50, 50, 3));
-        buttons.add(new Button(10, 270, 50, 50, 5));
-        buttons.add(new Button(10, 330, 50, 50, 4));
         this.addMouseMotionListener(new MouseMotionAdapter()
         {
             @Override
@@ -43,13 +38,20 @@ public class MyPanel extends JPanel
             {
                 whereX = e.getX();
                 whereY = e.getY();
-
-                for (Button btn : buttons)
+                if(GUI.clicked(whereX, whereY))
                 {
-                    if(btn.clicked(whereX, whereY))
+                    botaoMouse = GUI;
+                    figuraMouse = null;
+                }
+                if(buttons.size() > 0)
+                {
+                    for (Button btn : buttons)
                     {
-                        botaoMouse = btn;
-                        figuraMouse = null;
+                        if(btn.clicked(whereX, whereY))
+                        {
+                            botaoMouse = btn;
+                            figuraMouse = null;
+                        }
                     }
                 }
                 for (Figura figura : figures) {
@@ -261,74 +263,99 @@ public class MyPanel extends JPanel
                     botaoFoco = null;
                     repaint();
                 }
-                for(Button button : buttons)
+                if(buttons.size() == 0)
                 {
-
-                    if(button.clicked(clickX, clickY))
+                    if(GUI.clicked(clickX, clickY))
                     {
-                        if(e.getButton() == MouseEvent.BUTTON1)
+                        GUI.setColorFundo(new Color(120, 120, 120));
+                        buttons.add(new Button(20, 50, 50, 50, 0));
+                        buttons.add(new Button(20, 110, 50, 50, 1));
+                        buttons.add(new Button(20, 170, 50, 50, 2));
+                        buttons.add(new Button(20, 230, 50, 50, 3));
+                        buttons.add(new Button(20, 290, 50, 50, 5));
+                        buttons.add(new Button(20, 350, 50, 50, 4));
+                        repaint();
+                    }
+                }
+                else {
+                    if(GUI.clicked(clickX, clickY))
+                    {
+                        GUI.setColorFundo(new Color(120, 120, 120));
+                        buttons.removeAll(buttons);
+                        repaint();
+                    }
+                    else
+                    {
+                        for(Button button : buttons)
                         {
-                            if(button.getType() == 0) //Rect
-                            {
-                                botaoFoco = buttons.get(0);
-                            }
-                            else if(button.getType() == 1) //Ellipse
-                            {
-                                botaoFoco = buttons.get(1);
-                            }
-                            else if(button.getType() == 2) //Triang
-                            {
-                                botaoFoco = buttons.get(2);
-                            }
-                            else if(button.getType() == 3) //Losang
-                            {
-                                botaoFoco = buttons.get(3);
-                            }
-                            else if(button.getType() == 4) //Eraser
-                            {
-                                buttons.get(5).setColorFundo(new Color(120, 120, 120));
-                                figures.remove(figuraFoco);
 
-                                figuraFoco = null;
-                                figuraMouse = null;
-                            }
-                            else if(button.getType() == 5) //Color chooser
+                            if(button.clicked(clickX, clickY))
                             {
-                                buttons.get(4).setColorFundo(new Color(120, 120, 120));
-                                repaint();
-                                Object[] options;
-                                if(figuraFoco != null)
+                                if(e.getButton() == MouseEvent.BUTTON1)
                                 {
-                                    options = new Object[]{"Fundo", "Contorno"};
-
-                                    int escolha = showOptionDialog(null, "Deseja trocar a cor de qual parte da figura?", "Troca de cor", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, icone, options, options[0]);
-
-                                    if(escolha == 0)
+                                    if(button.getType() == 0) //Rect
                                     {
-                                        Color cor = JColorChooser.showDialog(null, "Seletor de cores!", figuraFoco.getColorFundo());
-                                        figuraFoco.setColorFundo(cor);
+                                        botaoFoco = buttons.get(0);
                                     }
-                                    else if(escolha == 1)
+                                    else if(button.getType() == 1) //Ellipse
                                     {
-                                        Color cor = JColorChooser.showDialog(null, "Seletor de cores!", figuraFoco.getColorContorno());
-                                        figuraFoco.setColorContorno(cor);
+                                        botaoFoco = buttons.get(1);
                                     }
-                                }
-                                else
-                                {
-                                    options = new Object[]{"Sim", "Nao"};
-                                    int escolha = showOptionDialog(null, "Deseja mudar a cor da tela toda? ", "Troca de cor", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, icone, options, options[0]);
+                                    else if(button.getType() == 2) //Triang
+                                    {
+                                        botaoFoco = buttons.get(2);
+                                    }
+                                    else if(button.getType() == 3) //Losang
+                                    {
+                                        botaoFoco = buttons.get(3);
+                                    }
+                                    else if(button.getType() == 4) //Eraser
+                                    {
+                                        buttons.get(5).setColorFundo(new Color(120, 120, 120));
+                                        figures.remove(figuraFoco);
 
-                                    if(escolha == 0)
-                                    {
-                                        Color cor = JColorChooser.showDialog(null, "Seletor de cores!", MyPanel.super.getBackground());
-                                        MyPanel.super.setBackground(cor);
+                                        figuraFoco = null;
+                                        figuraMouse = null;
                                     }
+                                    else if(button.getType() == 5) //Color chooser
+                                    {
+                                        buttons.get(4).setColorFundo(new Color(120, 120, 120));
+                                        repaint();
+                                        Object[] options;
+                                        if(figuraFoco != null)
+                                        {
+                                            options = new Object[]{"Fundo", "Contorno"};
+
+                                            int escolha = showOptionDialog(null, "Deseja trocar a cor de qual parte da figura?", "Troca de cor", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, icone, options, options[0]);
+
+                                            if(escolha == 0)
+                                            {
+                                                Color cor = JColorChooser.showDialog(null, "Seletor de cores!", figuraFoco.getColorFundo());
+                                                figuraFoco.setColorFundo(cor);
+                                            }
+                                            else if(escolha == 1)
+                                            {
+                                                Color cor = JColorChooser.showDialog(null, "Seletor de cores!", figuraFoco.getColorContorno());
+                                                figuraFoco.setColorContorno(cor);
+                                            }
+                                        }
+                                        else
+                                        {
+                                            options = new Object[]{"Sim", "Nao"};
+                                            int escolha = showOptionDialog(null, "Deseja mudar a cor da tela toda? ", "Troca de cor", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, icone, options, options[0]);
+
+                                            if(escolha == 0)
+                                            {
+                                                Color cor = JColorChooser.showDialog(null, "Seletor de cores!", MyPanel.super.getBackground());
+                                                MyPanel.super.setBackground(cor);
+                                            }
+                                        }
+                                    }
+                                    botaoMouse = null;
+                                    buttons.get(4).setColorFundo(new Color(210, 210, 210));
+                                    repaint();
                                 }
                             }
-                            botaoMouse = null;
-                            buttons.get(4).setColorFundo(new Color(210, 210, 210));
-                            repaint();
                         }
                     }
                 }
@@ -400,6 +427,7 @@ public class MyPanel extends JPanel
                 for(Button button : buttons) {
                     button.setColorFundo(new Color(210, 210, 210));
                 }
+                GUI.setColorFundo(new Color(210, 210, 210));
                 repaint();
             }
         });
@@ -579,6 +607,7 @@ public class MyPanel extends JPanel
     public void paint(Graphics g)
     {
         super.paint(g);
+        GUI.paint(g, false);
         for(Figura fig: figures)
         {
             fig.paint(g, fig == figuraFoco);

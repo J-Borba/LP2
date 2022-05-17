@@ -96,19 +96,19 @@ public class Button implements IVisible {
         else if(this.Type == 4)//DEL
         {
             g2d.setColor(Color.black);
-            g2d.setFont(new Font("Consolas", Font.BOLD, 20));
+            g2d.setFont(new Font("Consolas", Font.PLAIN, 20));
             g2d.drawString("DEL", x+10, y+30);
         }
         else if(this.Type == 5)//COR
         {
             g2d.setColor(Color.black);
-            g2d.setFont(new Font("Consolas", Font.BOLD, 20));
+            g2d.setFont(new Font("Consolas", Font.PLAIN, 20));
             g2d.drawString("COR", x+9, y+31);
         }
-        else if(this.Type == 6)
+        else if(this.Type == 6) //GUI
         {
             g2d.setColor(Color.black);
-            g2d.setFont(new Font("Consolas", Font.BOLD, 20));
+            g2d.setFont(new Font("Consolas", Font.PLAIN, 20));
             g2d.drawString("Menu", x+18, y+20);
         }
     }

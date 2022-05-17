@@ -76,7 +76,6 @@ public class MyPanel extends JPanel
                 {
                     coordenada = figuraMouse.getPosition();
                     tamanho = figuraMouse.getSize();
-                    String tipoFigura = figuraMouse.getType();
 
                     if (figuraMouse.corner(new int[]{whereX, whereY}))
                     {
@@ -260,7 +259,10 @@ public class MyPanel extends JPanel
                             }
                         }
                     }
-                    botaoFoco = null;
+                    if(!e.isControlDown())
+                    {
+                        botaoFoco = null;
+                    }
                     repaint();
                 }
                 if(buttons.size() == 0)
@@ -596,6 +598,14 @@ public class MyPanel extends JPanel
                     }
                 }
                 repaint();
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                if(e.getKeyCode() == VK_CONTROL){
+                    botaoFoco = null;
+                    repaint();
+                }
             }
         });
 

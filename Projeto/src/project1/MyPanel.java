@@ -6,6 +6,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
+import java.util.Objects;
+
 import static java.awt.Toolkit.getDefaultToolkit;
 import static java.awt.event.KeyEvent.*;
 import static javax.swing.JOptionPane.showOptionDialog;
@@ -76,45 +78,114 @@ public class MyPanel extends JPanel
                 {
                     coordenada = figuraMouse.getPosition();
                     tamanho = figuraMouse.getSize();
-
-                    if (figuraMouse.corner(new int[]{whereX, whereY}))
+                    String tipo = figuraMouse.getType();
+                    if(Objects.equals(tipo, "Rect") || Objects.equals(tipo, "Ellipse"))
                     {
-                        MyPanel.super.setCursor(seResizeCur);
-                    }
-                    else if (whereX >= coordenada[0] && whereX <= coordenada[0] + tamanho[0] &&
-                            whereY >= coordenada[1] && whereY <= coordenada[1] + 5)
-                    {
-                        MyPanel.super.setCursor(nResizeCur);
-                    }
-                    else if (whereX >= coordenada[0] && whereX <= coordenada[0] + tamanho[0] &&
-                            whereY >= coordenada[1] + tamanho[1] - 5 && whereY <= coordenada[1] + tamanho[1])
-                    {
-                        MyPanel.super.setCursor(sResizeCur);
-                    }
-                    else if (whereX >= coordenada[0] && whereX <= coordenada[0] + 5 &&
-                            whereY >= coordenada[1] && whereY <= coordenada[1] + tamanho[1])
-                    {
-                        MyPanel.super.setCursor(eResizeCur);
-                    }
-                    else if (whereX >= coordenada[0] + tamanho[0] - 5 && whereX <= coordenada[0] + tamanho[0] &&
-                            whereY >= coordenada[1] && whereY <= coordenada[1] + tamanho[1])
-                    {
-                        MyPanel.super.setCursor(wResizeCur);
-                    }
-                    else if (figuraMouse.clicked(whereX, whereY))
-                    {
-                        if (figuraMouse == figuraFoco)
+                        if (figuraMouse.corner(new int[]{whereX, whereY}))
                         {
-                            MyPanel.super.setCursor(moveCur);
+                            MyPanel.super.setCursor(seResizeCur);
+                        }
+                        else if (whereX >= coordenada[0] && whereX <= coordenada[0] + tamanho[0] &&
+                                whereY >= coordenada[1] && whereY <= coordenada[1] + 5)
+                        {
+                            MyPanel.super.setCursor(nResizeCur);
+                        }
+                        else if (whereX >= coordenada[0] && whereX <= coordenada[0] + tamanho[0] &&
+                                whereY >= coordenada[1] + tamanho[1] - 5 && whereY <= coordenada[1] + tamanho[1])
+                        {
+                            MyPanel.super.setCursor(sResizeCur);
+                        }
+                        else if (whereX >= coordenada[0] && whereX <= coordenada[0] + 5 &&
+                                whereY >= coordenada[1] && whereY <= coordenada[1] + tamanho[1])
+                        {
+                            MyPanel.super.setCursor(eResizeCur);
+                        }
+                        else if (whereX >= coordenada[0] + tamanho[0] - 5 && whereX <= coordenada[0] + tamanho[0] &&
+                                whereY >= coordenada[1] && whereY <= coordenada[1] + tamanho[1])
+                        {
+                            MyPanel.super.setCursor(wResizeCur);
+                        }
+                        else if (figuraMouse.clicked(whereX, whereY))
+                        {
+                            if (figuraMouse == figuraFoco)
+                            {
+                                MyPanel.super.setCursor(moveCur);
+                            }
+                            else
+                            {
+                                MyPanel.super.setCursor(handCur);
+                            }
                         }
                         else
                         {
-                            MyPanel.super.setCursor(handCur);
+                            MyPanel.super.setCursor(defaultCur);
                         }
                     }
-                    else
+                    else if(Objects.equals(tipo, "Losang"))
                     {
-                        MyPanel.super.setCursor(defaultCur);
+                        if (whereX >= coordenada[0]+45 && whereX <= coordenada[0] + tamanho[0] -45&&
+                                whereY >= coordenada[1] && whereY <= coordenada[1] + 5)
+                        {
+                            MyPanel.super.setCursor(nResizeCur);
+                        }
+                        else if (whereX >= coordenada[0]+45 && whereX <= coordenada[0] + tamanho[0]-45 &&
+                                whereY >= coordenada[1] + tamanho[1] - 5 && whereY <= coordenada[1] + tamanho[1])
+                        {
+                            MyPanel.super.setCursor(sResizeCur);
+                        }
+                        else if (whereX >= coordenada[0] && whereX <= coordenada[0] + 5 &&
+                                whereY >= coordenada[1]+45 && whereY <= coordenada[1] + tamanho[1]-45)
+                        {
+                            MyPanel.super.setCursor(eResizeCur);
+                        }
+                        else if (whereX >= coordenada[0] + tamanho[0] - 5 && whereX <= coordenada[0] + tamanho[0] &&
+                                whereY >= coordenada[1]+45 && whereY <= coordenada[1] + tamanho[1]-45)
+                        {
+                            MyPanel.super.setCursor(wResizeCur);
+                        }
+                        else if (figuraMouse.clicked(whereX, whereY))
+                        {
+                            if (figuraMouse == figuraFoco)
+                            {
+                                MyPanel.super.setCursor(moveCur);
+                            }
+                            else
+                            {
+                                MyPanel.super.setCursor(handCur);
+                            }
+                        }
+                        else
+                        {
+                            MyPanel.super.setCursor(defaultCur);
+                        }
+                    }
+                    else if(Objects.equals(tipo, "Triang"))
+                    {
+                        if (whereX >= coordenada[0]+45 && whereX <= coordenada[0] + tamanho[0] -45&&
+                                whereY >= coordenada[1] && whereY <= coordenada[1] + 5)
+                        {
+                            MyPanel.super.setCursor(nResizeCur);
+                        }
+                        else if (whereX >= coordenada[0] && whereX <= coordenada[0] + tamanho[0] &&
+                                whereY >= coordenada[1] + tamanho[1] - 5 && whereY <= coordenada[1] + tamanho[1])
+                        {
+                            MyPanel.super.setCursor(sResizeCur);
+                        }
+                        else if (figuraMouse.clicked(whereX, whereY))
+                        {
+                            if (figuraMouse == figuraFoco)
+                            {
+                                MyPanel.super.setCursor(moveCur);
+                            }
+                            else
+                            {
+                                MyPanel.super.setCursor(handCur);
+                            }
+                        }
+                        else
+                        {
+                            MyPanel.super.setCursor(defaultCur);
+                        }
                     }
                 }
                 else

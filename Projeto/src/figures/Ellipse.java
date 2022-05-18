@@ -123,7 +123,10 @@ public class Ellipse extends Figura{
             g2d.draw(new Ellipse2D.Double(this.xPoints[0]-2, this.yPoints[0]-2, this.w+4, this.h+4));
             g2d.setColor(this.getColorFundo());
             g2d.setStroke(new BasicStroke(0.5F));
-            g2d.drawRect(this.xPoints[0]-2, this.yPoints[0]-2, this.w+4, this.h+4);
+            g2d.fillRect(this.xPoints[0]+this.w-5, this.yPoints[0] + this.h-5, 5, 5);
+            g2d.setColor(Color.black);
+            g2d.setStroke(new BasicStroke(1));
+            g2d.drawRect(this.xPoints[0]+this.w-5, this.yPoints[0] + this.h-5, 5, 5);
         }
     }
 }

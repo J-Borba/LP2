@@ -123,6 +123,12 @@ public class Button implements IVisible {
         }
         else if(this.Type == 6) //GUI
         {
+            g2d.setColor(fundo);
+            g2d.fillRect(x, y, w, h);
+
+            g2d.setColor(new Color(160, 160, 160));
+            g2d.drawRect(x, y, w, h);
+
             g2d.setColor(Color.black);
             g2d.setFont(new Font("Consolas", Font.PLAIN, 20));
             g2d.drawString("Menu", x+18, y+20);

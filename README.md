@@ -12,3 +12,7 @@ Lista com as redes sociais do ~~criador do repositório~~ aluno de LP2:
 - [x] Fiquei sem ideias, então vou fazer uma ***breve*** apresentação.  
 
 Meu nome é João Victor Ferreira Borba e tenho 19 anos.
+
+# Licenças
+* Icone de lixeira por Creative Stall. Licenciado em Creative Commons. Disponível em: https://thenounproject.com/term/garbage-bin/629051/
+* Icone de paleta por Creative Stall. Licenciado em Creative Commons. Disponível em: https://thenounproject.com/icon/color-839730/

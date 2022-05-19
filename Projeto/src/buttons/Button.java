@@ -2,14 +2,22 @@ package buttons;
 
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 import interfaces.IVisible;
+
+import javax.imageio.ImageIO;
+import javax.swing.*;
+
+import static java.awt.Toolkit.getDefaultToolkit;
 
 public class Button implements IVisible {
     private int x, y, w, h;
     private final int Type;
     private Color fundo;
-
+    private BufferedImage img, cor;
     public Button(int x, int y, int w, int h, int Type)
     {
         this.x = x;
@@ -95,15 +103,23 @@ public class Button implements IVisible {
         }
         else if(this.Type == 4)//DEL
         {
-            g2d.setColor(Color.black);
-            g2d.setFont(new Font("Consolas", Font.PLAIN, 20));
-            g2d.drawString("DEL", x+10, y+30);
+            try
+            {
+                img = ImageIO.read(getClass().getResourceAsStream("trash.png"));
+            } catch (IOException e) {
+                System.out.println("Error: Image not found! ");
+            }
+            g2d.drawImage(img, this.x+5, this.y+8, 40, 40, null);
         }
         else if(this.Type == 5)//COR
         {
-            g2d.setColor(Color.black);
-            g2d.setFont(new Font("Consolas", Font.PLAIN, 20));
-            g2d.drawString("COR", x+9, y+31);
+            try
+            {
+                cor = ImageIO.read(getClass().getResourceAsStream("color.png"));
+            } catch (IOException e) {
+                System.out.println("Error: Image not found! ");
+            }
+            g2d.drawImage(cor, this.x, this.y+5, 50, 40, null);
         }
         else if(this.Type == 6) //GUI
         {

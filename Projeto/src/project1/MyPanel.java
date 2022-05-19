@@ -161,7 +161,11 @@ public class MyPanel extends JPanel
                     }
                     else if(Objects.equals(tipo, "Triang"))
                     {
-                        if (whereX >= coordenada[0]+45 && whereX <= coordenada[0] + tamanho[0] -45&&
+                        if (figuraMouse.corner(new int[]{whereX, whereY}))
+                        {
+                            MyPanel.super.setCursor(seResizeCur);
+                        }
+                        else if (whereX >= coordenada[0]+45 && whereX <= coordenada[0] + tamanho[0] -45&&
                                 whereY >= coordenada[1] && whereY <= coordenada[1] + 5)
                         {
                             MyPanel.super.setCursor(nResizeCur);

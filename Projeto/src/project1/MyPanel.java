@@ -13,7 +13,7 @@ import static java.awt.event.KeyEvent.*;
 import static javax.swing.JOptionPane.showOptionDialog;
 public class MyPanel extends JPanel
 {
-    private final ImageIcon icon = new ImageIcon("project1/logo.png");
+    private final ImageIcon icon = new ImageIcon(getClass().getResource("logo.png"));
     public static ArrayList<Figura> figures = new ArrayList<>();
     private final ArrayList<Button> buttons = new ArrayList<>();
     private Figura figuraFoco = null;

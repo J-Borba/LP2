@@ -9,9 +9,6 @@ import java.io.IOException;
 import interfaces.IVisible;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
-
-import static java.awt.Toolkit.getDefaultToolkit;
 
 public class Button implements IVisible {
     private int x, y, w, h;

@@ -2,18 +2,18 @@ package project1;
 
 import buttons.Button;
 import figures.*;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Objects;
 
-import static java.awt.Toolkit.getDefaultToolkit;
 import static java.awt.event.KeyEvent.*;
 import static javax.swing.JOptionPane.showOptionDialog;
 public class MyPanel extends JPanel
 {
-    private final ImageIcon icone = new ImageIcon(getDefaultToolkit().getImage(getClass().getResource("logo.png")));
+    private final ImageIcon icon = new ImageIcon("project1/logo.png");
     public static ArrayList<Figura> figures = new ArrayList<>();
     private final ArrayList<Button> buttons = new ArrayList<>();
     private Figura figuraFoco = null;
@@ -403,7 +403,7 @@ public class MyPanel extends JPanel
                                         {
                                             options = new Object[]{"Fundo", "Contorno"};
 
-                                            int escolha = showOptionDialog(null, "Deseja trocar a cor de qual parte da figura?", "Troca de cor", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, icone, options, options[0]);
+                                            int escolha = showOptionDialog(null, "Deseja trocar a cor de qual parte da figura?", "Troca de cor", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, icon, options, options[0]);
 
                                             if(escolha == 0)
                                             {
@@ -419,7 +419,7 @@ public class MyPanel extends JPanel
                                         else
                                         {
                                             options = new Object[]{"Sim", "Nao"};
-                                            int escolha = showOptionDialog(null, "Deseja mudar a cor da tela toda? ", "Troca de cor", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, icone, options, options[0]);
+                                            int escolha = showOptionDialog(null, "Deseja mudar a cor da tela toda? ", "Troca de cor", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, icon, options, options[0]);
 
                                             if(escolha == 0)
                                             {
@@ -457,7 +457,7 @@ public class MyPanel extends JPanel
                         {
                             Object[] options = {"Fundo", "Contorno"};
 
-                            int escolha = showOptionDialog(null, "Deseja trocar a cor de qual parte da figura?", "Troca de cor", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, icone, options, options[0]);
+                            int escolha = showOptionDialog(null, "Deseja trocar a cor de qual parte da figura?", "Troca de cor", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, icon, options, options[0]);
 
                             if(escolha == 0)
                             {
@@ -477,7 +477,7 @@ public class MyPanel extends JPanel
                     if(e.getButton() == MouseEvent.BUTTON3)
                     {
                         Object[] options = {"Sim", "Nao"};
-                        int escolha = showOptionDialog(null, "Deseja mudar a cor da tela toda? ", "Troca de cor", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, icone, options, options[0]);
+                        int escolha = showOptionDialog(null, "Deseja mudar a cor da tela toda? ", "Troca de cor", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, icon, options, options[0]);
 
                         if(escolha == 0)
                         {
@@ -550,7 +550,7 @@ public class MyPanel extends JPanel
                     else if(e.getKeyChar() == 'c' || e.getKeyChar() == 'C')
                     {
                         Object[] options = {"Fundo", "Contorno"};
-                        int escolha = showOptionDialog(null, "Deseja trocar a cor de qual parte da figura?", "Troca de cor", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, icone, options, options[0]);
+                        int escolha = showOptionDialog(null, "Deseja trocar a cor de qual parte da figura?", "Troca de cor", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, icon, options, options[0]);
 
                         if(escolha == 0)
                         {
@@ -663,7 +663,7 @@ public class MyPanel extends JPanel
                     {
                         Object[] options = {"Sim", "Nao"};
 
-                        int escolha = showOptionDialog(null, "Deseja mudar a cor da tela toda? ", "Troca de cor", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, icone, options, options[0]);
+                        int escolha = showOptionDialog(null, "Deseja mudar a cor da tela toda? ", "Troca de cor", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, icon, options, options[0]);
 
                         if(escolha == 0)
                         {

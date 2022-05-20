@@ -2,23 +2,27 @@ package project1;
 
 import figures.Figura;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.ArrayList;
-
-import static java.awt.Toolkit.*;
 
 public class MyFrame extends JFrame {
 
     //Metodo construtor
     public MyFrame() {
-        ImageIcon icone = new ImageIcon(getDefaultToolkit().getImage(getClass().getResource("logo.png")));
-        this.setIconImage(icone.getImage());
-
+        try{
+            BufferedImage icone = ImageIO.read(getClass().getResourceAsStream("logo.png"));
+            this.setIconImage(icone);
+        }
+        catch(IOException e)
+        {
+            System.out.println("Imagem nao encontrada");
+        }
         //Inicializando o panel
         //Criando um panel para o frame
         MyPanel panel = new MyPanel();
